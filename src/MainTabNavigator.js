@@ -1,5 +1,6 @@
 import React from 'react';
 import { Platform } from 'react-native';
+import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
@@ -12,9 +13,6 @@ import HomeScreen from '../src/screens/HomeScreen';
 import SearchScreen from '../src/screens/SearchScreen';
 import TabBarIcon from '../src/components/TabBarIcon';
 
-let darkBlue = '#0b121c';
-let seaGreen = '#009F93';
-
 const config = Platform.select({
     web: { headerMode: 'screen' },
     default: {},
@@ -25,38 +23,22 @@ const defaultOptions = {
         headerTitle: '',
         headerBackTitleVisible: 'Back',
         headerStyle: {
-            backgroundColor: darkBlue,
+            backgroundColor: Colors.darkBlue,
             borderBottomWidth: 0,
         },
-        headerTintColor: seaGreen,
+        headerTintColor: Colors.seaGreen,
         headerTitleStyle: {
             fontWeight: 'bold',
-        },
+        }
     }
-}
-
-
-
+};
 
 const HomeStack = createStackNavigator(
     {
         Home: HomeScreen,
         Details: AlbumDetailsScreen,
-    },
-    {
-        defaultNavigationOptions: {
-            headerTitle: '',
-            headerBackTitleVisible: 'Back',
-            headerStyle: {
-                backgroundColor: darkBlue,
-                borderBottomWidth: 0,
-            },
-            headerTintColor: seaGreen,
-            headerTitleStyle: {
-                fontWeight: 'bold',
-            },
-        }
-    }, config
+    }, defaultOptions,
+    config
 );
 
 HomeStack.navigationOptions = {
@@ -72,20 +54,7 @@ const SearchStack = createStackNavigator(
     {
         Search: SearchScreen,
         Details: AlbumDetailsScreen,
-    }, {
-    defaultNavigationOptions: {
-        headerTitle: '',
-        headerBackTitleVisible: 'Back',
-        headerStyle: {
-            backgroundColor: darkBlue,
-            borderBottomWidth: 0,
-        },
-        headerTintColor: seaGreen,
-        headerTitleStyle: {
-            fontWeight: 'bold',
-        },
-    },
-},
+    }, defaultOptions,
     config
 );
 
@@ -102,21 +71,7 @@ const DigStack = createStackNavigator(
     {
         Dig: DigScreen,
         Details: AlbumDetailsScreen,
-    },
-    {
-        defaultNavigationOptions: {
-            headerTitle: '',
-            headerBackTitleVisible: 'Back',
-            headerStyle: {
-                backgroundColor: darkBlue,
-                borderBottomWidth: 0,
-            },
-            headerTintColor: seaGreen,
-            headerTitleStyle: {
-                fontWeight: 'bold',
-            },
-        },
-    },
+    }, defaultOptions,
     config
 );
 
@@ -133,21 +88,7 @@ const CartStack = createStackNavigator(
     {
         Cart: CartScreen,
         Details: AlbumDetailsScreen,
-    },
-    {
-        defaultNavigationOptions: {
-            headerTitle: '',
-            headerBackTitleVisible: 'Back',
-            headerStyle: {
-                backgroundColor: darkBlue,
-                borderBottomWidth: 0,
-            },
-            headerTintColor: seaGreen,
-            headerTitleStyle: {
-                fontWeight: 'bold',
-            },
-        },
-    },
+    }, defaultOptions,
     config
 );
 
@@ -179,12 +120,12 @@ const tabNavigator = createBottomTabNavigator({
     CartStack,
 }, {
     tabBarOptions: {
-        activeTintColor: seaGreen,
-        activeIconColor: seaGreen,
-        style: { backgroundColor: darkBlue }
+        activeTintColor: Colors.seaGreen,
+        activeIconColor: Colors.seaGreen,
+        style: { backgroundColor: Colors.darkBlue }
     },
 });
 
 tabNavigator.path = '';
 
-export default tabNavigator;
+export default createAppContainer(tabNavigator);

@@ -1,16 +1,41 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { SafeAreaView, StyleSheet, Image } from 'react-native';
 
-const HomeScreen = ({ navigation }) => {
+import Colors from '../constants/Colors';
+import { ScrollView } from 'react-native-gesture-handler';
+import HomeList from '../components/HomeList';
+
+const HomeScreen = () => {
     return (
-        <View>
-            <Text>HomeScreen</Text>
-            <Button title="Go to details" onPress={() => {navigation.navigate('Details')}} />
-        </View>
+        <SafeAreaView style={styles.container}>
+            <ScrollView>
+                <Image source={require("../../assets/images/logo.png")} style={styles.imageContainer} />
+                <HomeList title="What's New" />
+                <HomeList title="What's Hot" />
+                <HomeList title="New House" />
+                <HomeList title="New Techno" />
+                <HomeList title="New Drum N Bass" />
+                <HomeList title="New Acid" />
+                <HomeList title="New Hip-Hop" />
+                <HomeList title="New Electro" />
+                <HomeList title="New Deep House" />
+            </ScrollView>
+        </SafeAreaView>
     );
 };
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: Colors.darkBlue
+    },
+    imageContainer: {
+        height: 100,
+        width: 100,
+        borderRadius: 50,
+        marginTop: 35,
+        alignSelf: 'center'
+    }
+});
