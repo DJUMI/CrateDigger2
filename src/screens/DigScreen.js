@@ -1,14 +1,16 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { Button } from 'react-native-elements';
 
-const DigScreen = () => {
+const DigScreen = ({ navigation }) => {
     return (
         <View>
             <Text>DigScreen</Text>
+            <Button title="Go to details" onPress={() => {navigation.navigate('Details')}} />
         </View>
-    )
-}
+    );
+};
 
-export default DigScreen
+export default DigScreen;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
