@@ -1,8 +1,9 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 
-import ListItem from './ListItem';
 import Colors from '../constants/Colors';
+import ListItem from './ListItem';
+
 
 const DATA = [
     {
@@ -27,6 +28,7 @@ const HomeList = ({ title }) => {
                     {title}
                 </Text>
             </View>
+
             <View style={styles.listContainer}>
                 <FlatList
                     horizontal
@@ -36,7 +38,6 @@ const HomeList = ({ title }) => {
                     showsHorizontalScrollIndicator={false}
                 />
             </View>
-
         </View>
     );
 };

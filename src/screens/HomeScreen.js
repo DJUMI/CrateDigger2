@@ -1,8 +1,8 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, Image } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import Colors from '../constants/Colors';
-import { ScrollView } from 'react-native-gesture-handler';
 import HomeList from '../components/HomeList';
 
 const HomeScreen = () => {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         height: 100,
         width: 100,
         borderRadius: 50,
-        marginTop: 35,
+        marginTop: 10,
         alignSelf: 'center'
     }
 });
