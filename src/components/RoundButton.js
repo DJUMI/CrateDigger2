@@ -45,6 +45,6 @@ const styles = StyleSheet.create({
     buttonDisabledText: {
         fontSize: 15,
         fontWeight: 'bold',
-        color: 'black',
+        color: 'black'
     }
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 
 import Colors from '../constants/Colors';
-import HomeList from '../components/HomeList';
+import HomeList from '../components/lists/HomeList';
 
 const HomeScreen = () => {
     return (

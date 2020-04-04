@@ -2,42 +2,35 @@ import React from 'react';
 import { Image, Linking, ScrollView, StyleSheet, Text, View  } from 'react-native';
 
 import Colors from '../constants/Colors';
-import HomeList from '../components/HomeList';
+import DATA from '../constants/DATA';
+import HomeList from '../components/lists/HomeList';
 import RoundButton from '../components/RoundButton';
 
 const DetailsScreen = ({ route }) => {
     const { title } = route.params;
 
-    const artist = 'Biggie Smalls';
-    const label = 'Def Jam';
-    const format = 'CD';
-    const price = 3.55;
-    const genre = 'Hip-hop';
-    const image_url = '';
-    const video_url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
-
     return (
         <ScrollView style={styles.container}>
             <View style={styles.infoContainer}>
                 <View style={styles.textContainer}>
-                    <Text style={styles.infoText}>{artist}</Text>
-                    <Text style={styles.titleText}>{title}</Text>
-                    <Text style={styles.infoText}>{label}</Text>
-                    <Text style={styles.infoText}>{format}</Text>
-                    <Text style={styles.infoText}>${parseFloat(Math.round(price * 100) / 100).toFixed(2)}</Text>
-                    <Text style={styles.infoText}>{genre}</Text>
+                    <Text style={styles.infoText}>{DATA[0].artist}</Text>
+                    <Text style={styles.titleText}>{DATA[0].title}</Text>
+                    <Text style={styles.infoText}>{DATA[0].label}</Text>
+                    <Text style={styles.infoText}>{DATA[0].format}</Text>
+                    <Text style={styles.infoText}>${parseFloat(Math.round(DATA[0].price * 100) / 100).toFixed(2)}</Text>
+                    <Text style={styles.infoText}>{DATA[0].genre}</Text>
                 </View>
-                {image_url 
-                    ? <Image source={{ uri: image_url }} style={styles.image} /> 
+                {DATA[0].image_url 
+                    ? <Image source={{ uri: DATA[0].image_url }} style={styles.image} /> 
                     : <Image source={require('../../assets/images/vinylstock.jpg')} style={styles.image} />
                 }
             </View>
 
             <View style={styles.buttonContainer}>
                 <RoundButton title='+ Add to Cart' onPress={() => {}} />
-                {video_url
-                    ? <RoundButton title='Listen' onPress={() => {Linking.openURL(video_url)}} />
-                    : <RoundButton disabled title='Listen' onPress={() => {Linking.openURL(video_url)}} />
+                {DATA[0].video_url
+                    ? <RoundButton title='Listen' onPress={() => {Linking.openURL(DATA[0].video_url)}} />
+                    : <RoundButton disabled title='Listen' onPress={() => {}} />
                 }
             </View>
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import Colors from '../constants/Colors';
-import CartList from '../components/CartList';
+import CartList from '../components/lists/CartList';
 
 const CartScreen = ({ navigation }) => {
     return (
@@ -28,25 +28,25 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 30,
-        backgroundColor: Colors.darkBlue,
+        backgroundColor: Colors.darkBlue
     },
     headerContainer: {
         flexDirection: 'row',
         alignItems: 'flex-start',
         paddingVertical: 5,
         borderBottomColor: Colors.nearWhite,
-        borderBottomWidth: 1,
+        borderBottomWidth: 1
     },
     itemContainer: {
         flex: 2,
-        paddingLeft: 5,
+        paddingLeft: 5
     },
     priceContainer: {
         flex: 1,
-        alignItems: 'center',
+        alignItems: 'center'
     },
     headerText: {
         fontSize: 15,
         color: Colors.nearWhite
-    },
+    }
 });

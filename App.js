@@ -1,7 +1,6 @@
 import React from 'react';
 
-import AppNavigator from './src/MainTabNavigator';
-import MainTabNavigator from './src/MainTabNavigator2';
+import MainTabNavigator from './src/navigation/MainTabNavigator';
 
 export default () => {
   return (

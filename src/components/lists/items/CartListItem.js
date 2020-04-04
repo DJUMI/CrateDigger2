@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Swipeable from 'react-native-swipeable-row';
 
-import Colors from '../constants/Colors';
+import Colors from '../../../constants/Colors';
 
 const CartListItem = ({ item }, navigation) => {
     return (
@@ -31,7 +31,7 @@ const CartListItem = ({ item }, navigation) => {
                             style={styles.image}
                         /> :
                         <Image
-                            source={require('../../assets/images/vinylstock.jpg')}
+                            source={require('../../../../assets/images/vinylstock.jpg')}
                             style={styles.image}
                         />
                     }

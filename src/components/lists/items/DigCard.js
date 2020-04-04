@@ -1,8 +1,8 @@
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
-import Colors from '../constants/Colors';
-import RoundButton from '../components/RoundButton';
+import Colors from '../../../constants/Colors';
+import RoundButton from '../../RoundButton';
 
 const DigCard = (item, navigation) => {
     return (
@@ -29,7 +29,7 @@ const DigCard = (item, navigation) => {
                     style={styles.image}
                 /> :
                 <Image
-                    source={require('../../assets/images/vinylstock.jpg')}
+                    source={require('../../../../assets/images/vinylstock.jpg')}
                     style={styles.image}
                 />
             }
@@ -46,31 +46,28 @@ export default DigCard;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#ACB3B2',
+        backgroundColor: Colors.cardGray
     },
     textContainer: {
         paddingVertical: 5,
-        paddingHorizontal: 15,
+        paddingHorizontal: 15
     },
     artistText: {
         fontSize: 20,
-        color: Colors.darkBlue,
+        color: Colors.darkBlue
     },
     titleText: {
         fontSize: 25,
-        color: Colors.darkBlue,
+        color: Colors.darkBlue
     },
     image: {
-        flex: 1,
-        alignSelf: 'stretch',
         width: null,
-        height: 300,
+        height: 300
     },
     buttonContainer: {
         flexDirection: 'row',
         paddingVertical: 10,
         paddingHorizontal: 20,
-        justifyContent: 'space-between',
-    },
+        justifyContent: 'space-between'
+    }
 });

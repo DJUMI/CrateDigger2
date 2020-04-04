@@ -3,13 +3,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import Colors from '../src/constants/Colors';
-import DetailsScreen from '../src/screens/DetailsScreen';
-import CartScreen from '../src/screens/CartScreen';
-import DigScreen from '../src/screens/DigScreen';
-import HomeScreen from '../src/screens/HomeScreen';
-import SearchScreen from '../src/screens/SearchScreen';
-import TabBarIcon from '../src/components/TabBarIcon';
+import Colors from '../constants/Colors';
+import DetailsScreen from '../screens/DetailsScreen';
+import CartScreen from '../screens/CartScreen';
+import DigScreen from '../screens/DigScreen';
+import HomeScreen from '../screens/HomeScreen';
+import SearchScreen from '../screens/SearchScreen';
+import TabBarIcon from '../components/TabBarIcon';
 
 
 

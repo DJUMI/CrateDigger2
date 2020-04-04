@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import Colors from '../constants/Colors';
+import Colors from '../../../constants/Colors';
 
 const HomeListItem = ({ item }, navigation) => {
     return (
@@ -11,7 +11,7 @@ const HomeListItem = ({ item }, navigation) => {
         >
             {item.image_url
                 ? <Image source={{ uri: item.image_url }} style={styles.image} />
-                : <Image source={require('../../assets/images/vinylstock.jpg')} style={styles.image} />
+                : <Image source={require('../../../../assets/images/vinylstock.jpg')} style={styles.image} />
             }
 
             <View style={styles.titleContainer}>
