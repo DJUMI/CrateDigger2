@@ -5,8 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import Colors from '../src/constants/Colors';
-
-import AlbumDetailsScreen from '../src/screens/AlbumDetailsScreen';
+import DetailsScreen from './screens/DetailsScreen';
 import CartScreen from '../src/screens/CartScreen';
 import DigScreen from '../src/screens/DigScreen';
 import HomeScreen from '../src/screens/HomeScreen';
@@ -36,7 +35,7 @@ const defaultOptions = {
 const HomeStack = createStackNavigator(
     {
         Home: HomeScreen,
-        Details: AlbumDetailsScreen,
+        Details: DetailsScreen,
     }, defaultOptions,
     config
 );
@@ -53,7 +52,7 @@ HomeStack.path = '';
 const SearchStack = createStackNavigator(
     {
         Search: SearchScreen,
-        Details: AlbumDetailsScreen,
+        Details: DetailsScreen,
     }, defaultOptions,
     config
 );
@@ -70,7 +69,7 @@ SearchStack.path = '';
 const DigStack = createStackNavigator(
     {
         Dig: DigScreen,
-        Details: AlbumDetailsScreen,
+        Details: DetailsScreen,
     }, defaultOptions,
     config
 );
@@ -87,7 +86,7 @@ DigStack.path = '';
 const CartStack = createStackNavigator(
     {
         Cart: CartScreen,
-        Details: AlbumDetailsScreen,
+        Details: DetailsScreen,
     }, defaultOptions,
     config
 );
@@ -101,15 +100,15 @@ CartStack.navigationOptions = {
 
 CartStack.path = '';
 
-const AlbumDetailsStack = createStackNavigator(
+const DetailsStack = createStackNavigator(
     {
-        Details: AlbumDetailsScreen,
+        Details: DetailsScreen,
     }
 );
 
-AlbumDetailsStack.path = '';
+DetailsStack.path = '';
 
-AlbumDetailsScreen.navigationOptions = {
+DetailsScreen.navigationOptions = {
     title: 'Details'
 };
 

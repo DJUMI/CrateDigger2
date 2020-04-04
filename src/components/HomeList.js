@@ -1,5 +1,6 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import Colors from '../constants/Colors';
 import ListItem from './ListItem';
@@ -21,6 +22,8 @@ const DATA = [
 ];
 
 const HomeList = ({ title }) => {
+    const navigation = useNavigation();
+
     return (
         <View>
             <View style={styles.headerContainer}>
@@ -34,7 +37,8 @@ const HomeList = ({ title }) => {
                     horizontal
                     data={DATA}
                     keyExtractor={item => item.id}
-                    renderItem={ListItem}
+                    navigation={navigation}
+                    renderItem={(item)=> ListItem(item, navigation)}
                     showsHorizontalScrollIndicator={false}
                 />
             </View>
