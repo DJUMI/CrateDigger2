@@ -1,1 +1,2 @@
 make createNavigationOptions function to clean up main tab navigator
+handle case for empty home list

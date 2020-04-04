@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import Colors from '../constants/Colors';
-import ListItem from './ListItem';
+import HomeListItem from './HomeListItem';
 
 
 const DATA = [
@@ -45,7 +45,7 @@ const HomeList = ({ title }) => {
                     data={DATA}
                     keyExtractor={item => item.id}
                     navigation={navigation}
-                    renderItem={(item)=> ListItem(item, navigation)}
+                    renderItem={(item)=> HomeListItem(item, navigation)}
                     showsHorizontalScrollIndicator={false}
                 />
             </View>

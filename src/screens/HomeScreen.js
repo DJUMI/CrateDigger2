@@ -1,6 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Image } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { SafeAreaView, ScrollView, StyleSheet, Image } from 'react-native';
 
 import Colors from '../constants/Colors';
 import HomeList from '../components/HomeList';

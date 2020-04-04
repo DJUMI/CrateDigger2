@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import Colors from '../constants/Colors';
 
-const ListItem = ({ item }, navigation) => {
+const HomeListItem = ({ item }, navigation) => {
     return (
         <TouchableOpacity
             style={styles.container}
@@ -26,7 +26,7 @@ const ListItem = ({ item }, navigation) => {
     );
 };
 
-export default ListItem;
+export default HomeListItem;
 
 const styles = StyleSheet.create({
     container: {
