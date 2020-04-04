@@ -1,0 +1,1 @@
+make createNavigationOptions function to clean up main tab navigator

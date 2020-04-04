@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -22,10 +22,17 @@ const DATA = [
 ];
 
 const HomeList = ({ title }) => {
+    const [ isLoading, setIsLoading ] = useState(false);
     const navigation = useNavigation();
 
     return (
-        <View>
+        isLoading
+        //list is loading
+        ? <View style={styles.activityContainer}>
+            <ActivityIndicator />
+        </View>
+        //loading complete
+        : <View>
             <View style={styles.headerContainer}>
                 <Text style={styles.header}>
                     {title}
@@ -62,5 +69,11 @@ const styles = StyleSheet.create({
         height: 195,
         paddingTop: 5,
         marginBottom: 10
+    },
+    activityContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignContent: 'center',
+        paddingTop: 85,
     }
 });

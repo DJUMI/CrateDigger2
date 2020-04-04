@@ -3,12 +3,11 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import Colors from '../constants/Colors';
 
-const ListItem = ( { item }, navigation ) => {
-    
+const ListItem = ({ item }, navigation) => {
     return (
         <TouchableOpacity
             style={styles.container}
-            onPress={() => navigation.navigate('Details')}
+            onPress={() => navigation.navigate('Details', { title: item.title } )}
         >
             {item.image_url
                 ? <Image source={{ uri: item.image_url }} style={styles.image} />
