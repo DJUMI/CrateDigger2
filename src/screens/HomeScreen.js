@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Image } from 'react-native';
+import { Image, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 
 import Colors from '../constants/Colors';
 import HomeList from '../components/HomeList';

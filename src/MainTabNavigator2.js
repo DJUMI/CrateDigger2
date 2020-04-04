@@ -11,7 +11,7 @@ import HomeScreen from '../src/screens/HomeScreen';
 import SearchScreen from '../src/screens/SearchScreen';
 import TabBarIcon from '../src/components/TabBarIcon';
 
-const HomeStack = createStackNavigator();
+
 
 const defaultOptions = {
     headerTitle: '',
@@ -26,10 +26,12 @@ const defaultOptions = {
     }
 };
 
+const HomeStack = createStackNavigator();
+
 function HomeStackScreen() {
     return (
         <HomeStack.Navigator screenOptions={defaultOptions} >
-            <HomeStack.Screen name="Home" component={HomeScreen} />
+            <HomeStack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
             <HomeStack.Screen name="Details" component={DetailsScreen} />
         </HomeStack.Navigator>
     );
@@ -40,7 +42,7 @@ const SearchStack = createStackNavigator();
 function SearchStackScreen() {
     return (
         <SearchStack.Navigator screenOptions={defaultOptions} >
-            <SearchStack.Screen name="Search" component={SearchScreen} />
+            <SearchStack.Screen name="Search" component={SearchScreen} options={{ headerShown: false }} />
             <SearchStack.Screen name="Details" component={DetailsScreen} />
         </SearchStack.Navigator>
     );
@@ -51,7 +53,7 @@ const DigStack = createStackNavigator();
 function DigStackScreen() {
     return (
         <DigStack.Navigator screenOptions={defaultOptions} >
-            <DigStack.Screen name="Dig" component={DigScreen} />
+            <DigStack.Screen name="Dig" component={DigScreen} options={{ headerShown: false }} />
             <DigStack.Screen name="Details" component={DetailsScreen} />
         </DigStack.Navigator>
     );
@@ -62,7 +64,7 @@ const CartStack = createStackNavigator();
 function CartStackScreen() {
     return (
         <CartStack.Navigator screenOptions={defaultOptions} >
-            <CartStack.Screen name="Cart" component={CartScreen} />
+            <CartStack.Screen name="Cart" component={CartScreen} options={{ headerShown: false }} />
             <CartStack.Screen name="Details" component={DetailsScreen} />
         </CartStack.Navigator>
     );
@@ -74,6 +76,7 @@ export default function MainTabNavigator() {
     return (
         <NavigationContainer>
             <Tab.Navigator
+                initialRouteName="Dig"
                 tabBarOptions={{
                     activeTintColor: Colors.seaGreen,
                     activeIconColor: Colors.seaGreen,

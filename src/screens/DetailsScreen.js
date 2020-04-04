@@ -1,14 +1,14 @@
 import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, View, Linking } from 'react-native';
+import { Image, Linking, ScrollView, StyleSheet, Text, View  } from 'react-native';
 
-import RoundButton from '../components/RoundButton';
 import Colors from '../constants/Colors';
 import HomeList from '../components/HomeList';
+import RoundButton from '../components/RoundButton';
 
-const DetailsScreen = ({ navigation, route: { params: { title } } }) => {
+const DetailsScreen = ({ route }) => {
+    const { title } = route.params;
 
     const artist = 'Biggie Smalls';
-    const albumTitle = "Ain't Shit Changed";
     const label = 'Def Jam';
     const format = 'CD';
     const price = 3.55;
@@ -21,7 +21,7 @@ const DetailsScreen = ({ navigation, route: { params: { title } } }) => {
             <View style={styles.infoContainer}>
                 <View style={styles.textContainer}>
                     <Text style={styles.infoText}>{artist}</Text>
-                    <Text style={styles.titleText}>{albumTitle}</Text>
+                    <Text style={styles.titleText}>{title}</Text>
                     <Text style={styles.infoText}>{label}</Text>
                     <Text style={styles.infoText}>{format}</Text>
                     <Text style={styles.infoText}>${parseFloat(Math.round(price * 100) / 100).toFixed(2)}</Text>
@@ -34,10 +34,10 @@ const DetailsScreen = ({ navigation, route: { params: { title } } }) => {
             </View>
 
             <View style={styles.buttonContainer}>
-                <RoundButton title='+ Add to Cart' onPress={() => { }} />
+                <RoundButton title='+ Add to Cart' onPress={() => {}} />
                 {video_url
-                    ? <RoundButton title='Listen' onPress={() => { Linking.openURL(video_url) }} />
-                    : <RoundButton disabled title='Listen' onPress={() => { Linking.openURL(video_url) }} />
+                    ? <RoundButton title='Listen' onPress={() => {Linking.openURL(video_url)}} />
+                    : <RoundButton disabled title='Listen' onPress={() => {Linking.openURL(video_url)}} />
                 }
             </View>
 
@@ -57,19 +57,19 @@ const styles = StyleSheet.create({
         margin: 5,
         paddingHorizontal: 10,
         paddingVertical: 5,
-        flexDirection: 'row',
+        flexDirection: 'row'
     },
     textContainer: {
         flex: 1,
-        paddingRight: 3,
+        paddingRight: 3
     },
     infoText: {
         fontSize: 17,
-        color: Colors.nearWhite,
+        color: Colors.nearWhite
     },
     titleText: {
         fontSize: 22,
-        color: Colors.nearWhite,
+        color: Colors.nearWhite
     },
     image: {
         width: 175, 
@@ -81,6 +81,6 @@ const styles = StyleSheet.create({
         paddingBottom: 15,
         paddingTop: 10,
         paddingHorizontal: 30,
-        justifyContent: 'space-between',
+        justifyContent: 'space-between'
     }
 });

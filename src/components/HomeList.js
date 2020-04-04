@@ -22,34 +22,34 @@ const DATA = [
 ];
 
 const HomeList = ({ title }) => {
-    const [ isLoading, setIsLoading ] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const navigation = useNavigation();
 
     return (
         isLoading
-        //list is loading
-        ? <View style={styles.activityContainer}>
-            <ActivityIndicator />
-        </View>
-        //loading complete
-        : <View>
-            <View style={styles.headerContainer}>
-                <Text style={styles.header}>
-                    {title}
-                </Text>
+            //list is loading
+            ? <View style={styles.activityContainer}>
+                <ActivityIndicator />
             </View>
+            //loading complete
+            : <View>
+                <View style={styles.headerContainer}>
+                    <Text style={styles.header}>
+                        {title}
+                    </Text>
+                </View>
 
-            <View style={styles.listContainer}>
-                <FlatList
-                    horizontal
-                    data={DATA}
-                    keyExtractor={item => item.id}
-                    navigation={navigation}
-                    renderItem={(item)=> HomeListItem(item, navigation)}
-                    showsHorizontalScrollIndicator={false}
-                />
+                <View style={styles.listContainer}>
+                    <FlatList
+                        horizontal
+                        data={DATA}
+                        keyExtractor={item => item.id}
+                        navigation={navigation}
+                        renderItem={(item) => HomeListItem(item, navigation)}
+                        showsHorizontalScrollIndicator={false}
+                    />
+                </View>
             </View>
-        </View>
     );
 };
 

@@ -20,8 +20,6 @@ export default roundButton;
 
 const styles = StyleSheet.create({
     button: {
-        borderWidth: 1,
-        borderColor: 'black',
         backgroundColor: Colors.seaGreen,
         height: 45,
         width: 140,
