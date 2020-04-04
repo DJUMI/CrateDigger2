@@ -7,7 +7,7 @@ const HomeListItem = ({ item }, navigation) => {
     return (
         <TouchableOpacity
             style={styles.container}
-            onPress={() => navigation.push('Details', { title: item.title } )}
+            onPress={() => navigation.push('Details', { item } )}
         >
             {item.image_url
                 ? <Image source={{ uri: item.image_url }} style={styles.image} />

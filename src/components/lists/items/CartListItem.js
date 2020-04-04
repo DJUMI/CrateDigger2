@@ -23,7 +23,7 @@ const CartListItem = ({ item }, navigation) => {
             <View style={styles.itemContainer}>
                 <TouchableOpacity
                     style={styles.infoContainer}
-                    onPress={() => navigation.push('Details', { title: item.title })}
+                    onPress={() => navigation.push('Details', { item })}
                 >
                     {item.image_url ?
                         <Image

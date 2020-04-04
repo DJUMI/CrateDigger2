@@ -1,6 +1,7 @@
 const DATA = [
     {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+        id: '1',
+        realease_id: '1',
         artist: 'Blink 182',
         price: 5.884535,
         title: 'First Item',
@@ -11,18 +12,20 @@ const DATA = [
         label: 'RCA'
     },
     {
-        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+        id: '2',
+        realease_id: '2',
         artist: 'No Doubt',
         price: 100.77,
         title: 'Second Item',
-        Format: '12"',
+        format: '12"',
         image_url: '',
         video_url : 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
         genre: 'Alternative',
         label: 'Some Long Record Label Name'
     },
     {
-        id: '58694a0f-3da1-471f-bd96-145571e29d72',
+        id: '3',
+        realease_id: '3',
         artist: 'Biggie Smalls',
         price: 173863.439746,
         title: 'Third Itemfjoanusiaboufioabusliaujnclbcsu',
@@ -31,7 +34,43 @@ const DATA = [
         video_url : 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
         genre: 'Hip-hop',
         label: 'Def Jam'
-    }
+    },
+    {
+        id: '4',
+        realease_id: '1',
+        artist: 'Blink 182',
+        price: 5.884535,
+        title: 'First Item',
+        format: 'CD',
+        image_url: '',
+        video_url : 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        genre: 'Rock',
+        label: 'RCA'
+    },
+    {
+        id: '5',
+        realease_id: '2',
+        artist: 'No Doubt',
+        price: 100.77,
+        title: 'Second Item',
+        format: '12"',
+        image_url: '',
+        video_url : 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        genre: 'Alternative',
+        label: 'Some Long Record Label Name'
+    },
+    {
+        id: '6',
+        realease_id: '3',
+        artist: 'Biggie Smalls',
+        price: 173863.439746,
+        title: 'Third Itemfjoanusiaboufioabusliaujnclbcsu',
+        format: '7"',
+        image_url: '',
+        video_url : 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        genre: 'Hip-hop',
+        label: 'Def Jam'
+    },
 ];
 
 export default DATA;

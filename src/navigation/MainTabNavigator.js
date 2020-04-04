@@ -76,7 +76,7 @@ export default function MainTabNavigator() {
     return (
         <NavigationContainer>
             <Tab.Navigator
-                initialRouteName="Cart"
+                initialRouteName="Search"
                 tabBarOptions={{
                     activeTintColor: Colors.seaGreen,
                     activeIconColor: Colors.seaGreen,

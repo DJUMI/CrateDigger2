@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import Colors from '../../../constants/Colors';
+import SquareButton from '../../SquareButton';
 
 const CartListFooter = () => {
     return (
@@ -12,11 +13,7 @@ const CartListFooter = () => {
             </View>
 
             <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                    style={styles.button}
-                >
-                    <Text style={styles.buttonText}>Check out with Discogs</Text>
-                </TouchableOpacity>
+                <SquareButton title='Check out with Discogs' onPress={() => {}} />
             </View>
         </View>
     );
@@ -43,18 +40,5 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         paddingHorizontal: 30,
         justifyContent: 'center'
-    },
-    button: {
-        backgroundColor: Colors.seaGreen,
-        height: 50,
-        width: 200,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 5
-    },
-    buttonText: {
-        fontSize: 15,
-        fontWeight: 'bold',
-        color: Colors.nearWhite
     }
 });

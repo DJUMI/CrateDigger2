@@ -2,34 +2,33 @@ import React from 'react';
 import { Image, Linking, ScrollView, StyleSheet, Text, View  } from 'react-native';
 
 import Colors from '../constants/Colors';
-import DATA from '../constants/DATA';
 import HomeList from '../components/lists/HomeList';
 import RoundButton from '../components/RoundButton';
 
 const DetailsScreen = ({ route }) => {
-    const { title } = route.params;
+    const { item } = route.params;
 
     return (
         <ScrollView style={styles.container}>
             <View style={styles.infoContainer}>
                 <View style={styles.textContainer}>
-                    <Text style={styles.infoText}>{DATA[0].artist}</Text>
-                    <Text style={styles.titleText}>{DATA[0].title}</Text>
-                    <Text style={styles.infoText}>{DATA[0].label}</Text>
-                    <Text style={styles.infoText}>{DATA[0].format}</Text>
-                    <Text style={styles.infoText}>${parseFloat(Math.round(DATA[0].price * 100) / 100).toFixed(2)}</Text>
-                    <Text style={styles.infoText}>{DATA[0].genre}</Text>
+                    <Text style={styles.infoText}>{item.artist}</Text>
+                    <Text style={styles.titleText}>{item.title}</Text>
+                    <Text style={styles.infoText}>{item.label}</Text>
+                    <Text style={styles.infoText}>{item.format}</Text>
+                    <Text style={styles.infoText}>${parseFloat(Math.round(item.price * 100) / 100).toFixed(2)}</Text>
+                    <Text style={styles.infoText}>{item.genre}</Text>
                 </View>
-                {DATA[0].image_url 
-                    ? <Image source={{ uri: DATA[0].image_url }} style={styles.image} /> 
+                {item.image_url 
+                    ? <Image source={{ uri: item.image_url }} style={styles.image} /> 
                     : <Image source={require('../../assets/images/vinylstock.jpg')} style={styles.image} />
                 }
             </View>
 
             <View style={styles.buttonContainer}>
                 <RoundButton title='+ Add to Cart' onPress={() => {}} />
-                {DATA[0].video_url
-                    ? <RoundButton title='Listen' onPress={() => {Linking.openURL(DATA[0].video_url)}} />
+                {item.video_url
+                    ? <RoundButton title='Listen' onPress={() => {Linking.openURL(item.video_url)}} />
                     : <RoundButton disabled title='Listen' onPress={() => {}} />
                 }
             </View>
