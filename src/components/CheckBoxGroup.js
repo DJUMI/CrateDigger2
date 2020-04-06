@@ -1,16 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import { CheckBox } from 'react-native-elements';
 
 import Colors from '../constants/Colors';
 
 const CheckBoxGroup = ({ checkBoxes, onPress, title, noBorderTop }) => {
     let borderTop;
-    noBorderTop ? borderTop = {borderTopWidth: 0} : borderTop = {borderTopWidth: 1}
+    noBorderTop ? borderTop = 0 : borderTop = 1
+    const titleStyle = EStyleSheet.create({
+        title: {
+            borderColor: Colors.lightGray,
+            paddingHorizontal: '15rem',
+            paddingVertical: '10rem',
+            borderTopWidth: borderTop
+        }
+    })
     return (
         <>
             {title
-                ? <View style={StyleSheet.flatten([styles.title, borderTop])}>
+                ? <View style={titleStyle.title}>
                     <Text style={styles.titleText}>{title}</Text>
                 </View>
                 : null
@@ -29,6 +38,7 @@ const CheckBoxGroup = ({ checkBoxes, onPress, title, noBorderTop }) => {
                             textStyle={styles.text}
                             title={checkBox.label}
                             uncheckedColor={Colors.nearWhite}
+                            size={EStyleSheet.value('24rem')}
                         />
                     );
                 })}
@@ -39,20 +49,15 @@ const CheckBoxGroup = ({ checkBoxes, onPress, title, noBorderTop }) => {
 
 export default CheckBoxGroup;
 
-const styles = StyleSheet.create({
-    title: {
-        //borderTopWidth: 1,
-        borderColor: Colors.lightGray,
-        paddingHorizontal: 15,
-        paddingVertical: 10
-    },
+const styles = EStyleSheet.create({
     titleText: {
-        color: Colors.nearWhite
+        color: Colors.nearWhite,
+        fontSize: '15rem'
     },
     container: {
         flexDirection: 'row',
-        paddingVertical: 10,
-        marginRight: 15
+        paddingVertical: '10rem',
+        marginRight: '15rem'
     },
     checkBox: {
         flex: 1,
@@ -62,7 +67,8 @@ const styles = StyleSheet.create({
     },
     text: {
         color: Colors.nearWhite,
-        fontSize: 15,
-        fontWeight: 'normal'
+        fontSize: '15rem',
+        fontWeight: 'normal',
+        marginRight: '10rem'
     }
 });
