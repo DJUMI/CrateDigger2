@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Text, View } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
+
 
 import Colors from '../../../constants/Colors';
 import SquareButton from '../../SquareButton';
@@ -21,24 +23,24 @@ const CartListFooter = () => {
 
 export default CartListFooter;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'flex-end',
         alignSelf: 'flex-end',
-        paddingVertical: 5,
-        paddingRight: 5
+        paddingVertical: '5rem',
+        paddingRight: '5rem'
     },
     text: {
-        fontSize: 15,
+        fontSize: '15rem',
         color: Colors.nearWhite,
-        paddingRight: 10
+        paddingRight: '10rem'
     },
     buttonContainer: {
         flexDirection: 'row',
-        paddingBottom: 55,
-        paddingTop: 10,
-        paddingHorizontal: 30,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        paddingBottom: '55rem',
+        paddingTop: '10rem',
+        paddingHorizontal: '30rem'
     }
 });

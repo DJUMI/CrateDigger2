@@ -1,7 +1,9 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Swipeable from 'react-native-swipeable-row';
+import EStyleSheet from 'react-native-extended-stylesheet';
+
 
 import Colors from '../../../constants/Colors';
 
@@ -9,9 +11,7 @@ const CartListItem = ({ item }, navigation) => {
     return (
         <Swipeable rightButtons={[
             <View style={styles.rightButtonContainer}>
-                <TouchableOpacity
-                    onPress={() => { }}
-                >
+                <TouchableOpacity onPress={() => { }}>
                     <Ionicons
                         name='ios-trash'
                         color='#FF0000'
@@ -20,49 +20,36 @@ const CartListItem = ({ item }, navigation) => {
                 </TouchableOpacity>
             </View>
         ]}>
-            <View style={styles.itemContainer}>
+            <View style={styles.container}>
                 <TouchableOpacity
                     style={styles.infoContainer}
                     onPress={() => navigation.push('Details', { item })}
                 >
-                    {item.image_url ?
-                        <Image
-                            source={{ uri: item.image_url }}
-                            style={styles.image}
-                        /> :
-                        <Image
-                            source={require('../../../../assets/images/vinylstock.jpg')}
-                            style={styles.image}
-                        />
-                    }
+                    <View style={styles.imageContainer}>
+                        {item.image_url
+                            ? <Image
+                                source={{ uri: item.image_url }}
+                                style={styles.image}
+                            />
+                            : <Image
+                                source={require('../../../../assets/images/vinylstock.jpg')}
+                                style={styles.image}
+                            />
+                        }
+                    </View>
 
-                    <View style={styles.itemTitleContainer}>
-                        <Text
-                            style={styles.itemOtherText}
-                            numberOfLines={1}
-                        >
-                            {item.artist}
-                        </Text>
-
-                        <Text
-                            style={styles.itemTitleText}
-                            numberOfLines={1}
-                        >
-                            {item.title}
-                        </Text>
-
-                        <Text
-                            style={styles.itemOtherText}
-                            numberOfLines={1}
-                        >
-                            {item.format}
-                        </Text>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.text} numberOfLines={1}>{item.artist}</Text>
+                        <Text style={styles.titleText} numberOfLines={1}>{item.title}</Text>
+                        <Text style={styles.text} numberOfLines={1}>{item.format}</Text>
                     </View>
                 </TouchableOpacity>
 
                 <View style={styles.priceContainer}>
                     <View style={styles.numContainer}>
-                        <Text style={styles.numText}>${parseFloat(Math.round(item.price * 100) / 100).toFixed(2)}</Text>
+                        <Text style={styles.priceText}>
+                            ${parseFloat(Math.round(item.price * 100) / 100).toFixed(2)}
+                        </Text>
                     </View>
                 </View>
             </View>
@@ -72,7 +59,7 @@ const CartListItem = ({ item }, navigation) => {
 
 export default CartListItem;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
     rightButtonContainer: {
         flex: 1,
         alignItems: 'flex-start',
@@ -81,55 +68,59 @@ const styles = StyleSheet.create({
         borderBottomColor: Colors.nearWhite,
         borderBottomWidth: 1
     },
-    itemContainer: {
-        flex: 1,
+    container: {
         flexDirection: 'row',
         alignItems: 'flex-start',
-        paddingVertical: 5,
+        backgroundColor: Colors.darkBlue,
+        paddingVertical: '5rem',
+        borderBottomWidth: 1,
         borderBottomColor: Colors.nearWhite,
-        borderBottomWidth: 1
+        height: '100rem'
     },
     infoContainer: {
         flex: 2,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        height: '100%'
+    },
+    imageContainer: {
+        height: '100%',
+        aspectRatio: 1,
+        marginLeft: '5rem'
     },
     image: {
-        borderRadius: 2,
-        width: 70,
-        height: 70,
-        marginLeft: 5
+        height: '100%',
+        width: '100%',
+        borderRadius: '2rem'
+    },
+    textContainer: {
+        height: '100%',
+        width: '67%',
+        justifyContent: 'center',
+        paddingLeft: '5rem'
+    },
+    text: {
+        fontSize: '15rem',
+        padding: '1rem',
+        color: Colors.nearWhite
+    },
+    titleText: {
+        fontSize: '20rem',
+        padding: '1rem',
+        color: Colors.nearWhite
     },
     priceContainer: {
-        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        height: 70
+        height: '100%',
+        width:'25%'
     },
     numContainer: {
-        backgroundColor: 'white',
-        padding: 3,
-        borderWidth: .5,
-        borderRadius: 2
+        backgroundColor: Colors.nearWhite,
+        paddingHorizontal: '3rem',
+        borderRadius: '2rem'
     },
-    numText: {
-        fontSize: 20,
+    priceText: {
+        fontSize: '20rem',
         color: Colors.darkBlue
-    },
-    itemTitleContainer: {
-        height: 70,
-        justifyContent: 'center',
-        paddingLeft: 5
-    },
-    itemOtherText: {
-        fontSize: 13,
-        padding: 1,
-        width: 115,
-        color: Colors.nearWhite
-    },
-    itemTitleText: {
-        fontSize: 15,
-        padding: 1,
-        width: 115,
-        color: Colors.nearWhite
     }
 });

@@ -8,7 +8,7 @@ import Colors from '../../../constants/Colors';
 const SearchListItem = ({ item }, navigation) => {
     return (
         <TouchableOpacity onPress={() => navigation.push('Details', { item })}>
-            <View style={styles.itemContainer}>
+            <View style={styles.container}>
                 <View style={styles.imageContainer}>
                     {item.image_url ?
                         <Image
@@ -40,9 +40,6 @@ export default SearchListItem;
 
 const styles = EStyleSheet.create({
     container: {
-        backgroundColor: Colors.darkBlue
-    },
-    itemContainer: {
         flexDirection: 'row',
         alignItems: 'flex-start',
         backgroundColor: Colors.darkBlue,
@@ -63,7 +60,6 @@ const styles = EStyleSheet.create({
         borderRadius: '2rem',
     },
     textContainer: {
-        alignItems: 'flex-start',
         justifyContent: 'center',
         paddingLeft: '5rem',
         height: '100%',
