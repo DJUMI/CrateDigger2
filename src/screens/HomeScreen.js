@@ -1,14 +1,18 @@
 import React from 'react';
-import { Image, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { Image, SafeAreaView, ScrollView, View } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Colors from '../constants/Colors';
 import HomeList from '../components/lists/HomeList';
 
+
 const HomeScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView>
-                <Image source={require("../../assets/images/logo.png")} style={styles.imageContainer} />
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.imageContainer}>
+                    <Image source={require("../../assets/images/logo.png")} style={styles.image} />
+                </View>
                 <HomeList title="What's New" />
                 <HomeList title="What's Hot" />
                 <HomeList title="New House" />
@@ -25,16 +29,19 @@ const HomeScreen = () => {
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: Colors.darkBlue
+        backgroundColor: Colors.darkBlue,
     },
     imageContainer: {
-        height: 100,
-        width: 100,
-        borderRadius: 50,
-        marginTop: 10,
-        alignSelf: 'center'
+        width: '27%',
+        aspectRatio: 1,
+        alignSelf: 'center',
+        marginTop: '10rem'
+    },
+    image: {
+        height: "100%",
+        width: "100%",
+        borderRadius: '50rem'
     }
 });

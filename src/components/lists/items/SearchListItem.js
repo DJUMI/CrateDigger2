@@ -1,15 +1,13 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Colors from '../../../constants/Colors';
 
 const SearchListItem = ({ item }, navigation) => {
     return (
-        <TouchableOpacity
-            style={styles.container}
-            onPress={() => navigation.push('Details', { item })}
-        >
+        <TouchableOpacity onPress={() => navigation.push('Details', { item })}>
             <View style={styles.itemContainer}>
                 {item.image_url ?
                     <Image
@@ -38,44 +36,44 @@ const SearchListItem = ({ item }, navigation) => {
 
 export default SearchListItem;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
     container: {
     },
     itemContainer: {
         flexDirection: 'row',
         alignItems: 'flex-start',
         backgroundColor: Colors.darkBlue,
-        paddingVertical: 5,
+        paddingVertical: '5rem',
         borderBottomWidth: 1,
         borderBottomColor: Colors.nearWhite
     },
     image: {
-        borderRadius: 2,
-        height: 90,
-        width: 90,
-        marginLeft: 5,
+        borderRadius: '2rem',
+        height: '100%',
+        aspectRatio: 1,
+        marginLeft: '5rem',
         alignSelf: 'center'
     },
     textContainer: {
         alignItems: 'flex-start',
         justifyContent: 'center',
-        paddingLeft: 5,
-        height: 90,
-        width: 240
+        paddingLeft: '5rem',
+        height: '90rem',
+        width: '240rem'
     },
     text: {
-        fontSize: 15,
-        padding: 1,
+        fontSize: '15rem',
+        padding: '1rem',
         color: Colors.nearWhite
     },
     titleText: {
-        fontSize: 20,
-        padding: 1,
+        fontSize: '20rem',
+        padding: '1rem',
         color: Colors.nearWhite
     },
     icon: {
         justifyContent: 'center',
-        height: 90,
-        marginRight: 5
+        height: '90rem',
+        marginRight: '5rem'
     }
 });

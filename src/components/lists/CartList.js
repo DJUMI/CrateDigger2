@@ -16,6 +16,7 @@ const CartList = () => {
                 renderItem={(item) => CartListItem(item, navigation)}
                 keyExtractor={item => item.id}
                 ListFooterComponent={CartListFooter}
+                showsVerticalScrollIndicator={false}
             />
         </SafeAreaView>
     );

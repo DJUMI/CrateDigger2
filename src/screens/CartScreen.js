@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
+
 
 import Colors from '../constants/Colors';
 import CartList from '../components/lists/CartList';
@@ -24,29 +26,29 @@ const CartScreen = ({ navigation }) => {
 
 export default CartScreen;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 30,
+        paddingTop: '30rem',
         backgroundColor: Colors.darkBlue
     },
     headerContainer: {
         flexDirection: 'row',
         alignItems: 'flex-start',
-        paddingVertical: 5,
+        paddingVertical: '5rem',
         borderBottomColor: Colors.nearWhite,
         borderBottomWidth: 1
     },
     itemContainer: {
         flex: 2,
-        paddingLeft: 5
+        paddingLeft: '5rem'
     },
     priceContainer: {
         flex: 1,
         alignItems: 'center'
     },
     headerText: {
-        fontSize: 15,
+        fontSize: '15rem',
         color: Colors.nearWhite
     }
 });

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Colors from '../../constants/Colors';
 import DATA from '../../constants/DATA';
@@ -40,25 +41,25 @@ const HomeList = ({ title }) => {
 
 export default HomeList;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
     headerContainer: {
-        paddingHorizontal: 15,
-        paddingVertical: 5
+        paddingHorizontal: '15rem',
+        paddingVertical: '5rem'
     },
     header: {
-        fontSize: 25,
+        fontSize: '25rem',
         fontWeight: 'bold',
         color: Colors.nearWhite
     },
     listContainer: {
-        height: 195,
-        paddingTop: 5,
-        marginBottom: 10
+        height: '195rem',
+        paddingTop: '5rem',
+        marginBottom: '10rem'
     },
     activityContainer: {
         flex: 1,
         justifyContent: 'center',
         alignContent: 'center',
-        paddingTop: 85,
+        paddingTop: '85rem'
     }
 });

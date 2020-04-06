@@ -1,5 +1,7 @@
 import React from 'react';
-import { Image, Linking, ScrollView, StyleSheet, Text, View  } from 'react-native';
+import { Image, Linking, ScrollView, Text, View } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
+
 
 import Colors from '../constants/Colors';
 import HomeList from '../components/lists/HomeList';
@@ -19,17 +21,20 @@ const DetailsScreen = ({ route }) => {
                     <Text style={styles.infoText}>${parseFloat(Math.round(item.price * 100) / 100).toFixed(2)}</Text>
                     <Text style={styles.infoText}>{item.genre}</Text>
                 </View>
-                {item.image_url 
-                    ? <Image source={{ uri: item.image_url }} style={styles.image} /> 
-                    : <Image source={require('../../assets/images/vinylstock.jpg')} style={styles.image} />
-                }
+                <View style={styles.imageContainer}>
+                    {item.image_url
+                        ? <Image source={{ uri: item.image_url }} style={styles.image} />
+                        : <Image source={require('../../assets/images/vinylstock.jpg')} style={styles.image} />
+                    }
+                </View>
+
             </View>
 
             <View style={styles.buttonContainer}>
-                <RoundButton title='+ Add to Cart' onPress={() => {}} />
+                <RoundButton title='+ Add to Cart' onPress={() => { }} />
                 {item.video_url
-                    ? <RoundButton title='Listen' onPress={() => {Linking.openURL(item.video_url)}} />
-                    : <RoundButton disabled title='Listen' onPress={() => {}} />
+                    ? <RoundButton title='Listen' onPress={() => { Linking.openURL(item.video_url) }} />
+                    : <RoundButton disabled title='Listen' onPress={() => { }} />
                 }
             </View>
 
@@ -41,38 +46,42 @@ const DetailsScreen = ({ route }) => {
 
 export default DetailsScreen;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
     container: {
         backgroundColor: Colors.darkBlue
     },
     infoContainer: {
-        margin: 5,
-        paddingHorizontal: 10,
-        paddingVertical: 5,
+        margin: '5rem',
+        paddingHorizontal: '10rem',
+        paddingVertical: '5rem',
         flexDirection: 'row'
     },
     textContainer: {
         flex: 1,
-        paddingRight: 3
+        paddingRight: '3rem'
     },
     infoText: {
-        fontSize: 17,
+        fontSize: '17rem',
         color: Colors.nearWhite
     },
     titleText: {
-        fontSize: 22,
+        fontSize: '22rem',
         color: Colors.nearWhite
     },
+    imageContainer: {
+        width: '55%',
+        aspectRatio: 1
+    },
     image: {
-        width: 175, 
-        height: 175, 
-        borderRadius: 2   
+        width: '100%',
+        height: '100%',
+        borderRadius: '2rem'
     },
     buttonContainer: {
         flexDirection: 'row',
-        paddingBottom: 15,
-        paddingTop: 10,
-        paddingHorizontal: 30,
+        paddingBottom: '15rem',
+        paddingTop: '10rem',
+        paddingHorizontal: '30rem',
         justifyContent: 'space-between'
     }
 });

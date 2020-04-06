@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Colors from '../constants/Colors';
 
@@ -18,17 +19,17 @@ const roundButton = ({ disabled, onPress, title }) => {
 
 export default roundButton;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
     button: {
         backgroundColor: Colors.seaGreen,
-        height: 45,
-        width: 140,
+        height: '45rem',
+        width: '140rem',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 50
+        borderRadius: '50rem'
     },
     buttonText: {
-        fontSize: 15,
+        fontSize: '15rem',
         fontWeight: 'bold',
         color: Colors.nearWhite
     },
@@ -36,14 +37,14 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
         backgroundColor: Colors.darkBlue,
-        height: 45,
-        width: 140,
+        height: '45rem',
+        width: '140rem',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 50
+        borderRadius: '50rem'
     },
     buttonDisabledText: {
-        fontSize: 15,
+        fontSize: '15rem',
         fontWeight: 'bold',
         color: 'black'
     }

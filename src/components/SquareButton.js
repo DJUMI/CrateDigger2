@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Colors from '../constants/Colors';
 
@@ -18,17 +19,17 @@ const SquareButton = ({ disabled, onPress, title }) => {
 
 export default SquareButton;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
     button: {
         backgroundColor: Colors.seaGreen,
-        height: 50,
-        width: 200,
+        height: '50rem',
+        width: '200rem',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 5
+        borderRadius: '5rem'
     },
     buttonText: {
-        fontSize: 15,
+        fontSize: '15rem',
         fontWeight: 'bold',
         color: Colors.nearWhite
     },
@@ -36,14 +37,14 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
         backgroundColor: Colors.darkBlue,
-        height: 45,
-        width: 140,
+        height: '50rem%',
+        width: '200rem%',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 50
+        borderRadius: '5rem'
     },
     buttonDisabledText: {
-        fontSize: 15,
+        fontSize: '15rem',
         fontWeight: 'bold',
         color: 'black'
     }

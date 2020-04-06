@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, ScrollView, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import EStyleSheet from 'react-native-extended-stylesheet';
+
 
 import DATA from '../../constants/DATA';
 import SearchListItem from './items/SearchListItem';
@@ -19,11 +21,12 @@ const SearchList = () => {
     const navigation = useNavigation();
 
     return (
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
             <FlatList
                 data={DATA.slice(0, numResultsShown)}
                 renderItem={(item) => SearchListItem(item, navigation)}
                 ListEmptyComponent={renderEmpty}
+                showsVerticalScrollIndicator={false}
             />
             <View style={styles.buttonContainer}>
                 <SquareButton title='Load more results' onPress={() => {}} />
@@ -34,9 +37,9 @@ const SearchList = () => {
 
 export default SearchList;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
     buttonContainer: {
         alignItems: 'center',
-        paddingTop: 5,
+        paddingTop: '10rem'
     }
 });
