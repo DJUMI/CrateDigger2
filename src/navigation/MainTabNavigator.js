@@ -1,7 +1,10 @@
 import React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import EStyleSheet from 'react-native-extended-stylesheet';
+
 
 import Colors from '../constants/Colors';
 import DetailsScreen from '../screens/DetailsScreen';
@@ -10,6 +13,7 @@ import DigScreen from '../screens/DigScreen';
 import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
 import TabBarIcon from '../components/TabBarIcon';
+
 
 
 
@@ -74,56 +78,59 @@ const Tab = createBottomTabNavigator();
 
 export default function MainTabNavigator() {
     return (
-        <NavigationContainer>
-            <Tab.Navigator
-                initialRouteName="Cart"
-                tabBarOptions={{
-                    activeTintColor: Colors.seaGreen,
-                    activeIconColor: Colors.seaGreen,
-                    style: { backgroundColor: Colors.darkBlue }
-                }}
-            >
-                <Tab.Screen
-                    name="Home"
-                    component={HomeStackScreen}
-                    options={{
-                        tabBarLabel: 'Home',
-                        tabBarIcon: ({ focused }) => (
-                            <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-home' : 'md-home'} />
-                        ),
+        <SafeAreaProvider>
+            <NavigationContainer>
+                <Tab.Navigator
+                    initialRouteName="Cart"
+                    tabBarOptions={{
+                        activeTintColor: Colors.seaGreen,
+                        activeIconColor: Colors.seaGreen,
+                        style: { backgroundColor: Colors.darkBlue, height: '8%' },
+                        labelStyle: { fontSize: EStyleSheet.value('11rem') }
                     }}
-                />
-                <Tab.Screen
-                    name="Search"
-                    component={SearchStackScreen}
-                    options={{
-                        tabBarLabel: 'Search',
-                        tabBarIcon: ({ focused }) => (
-                            <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-search' : 'md-search'} />
-                        ),
-                    }}
-                />
-                <Tab.Screen
-                    name="Dig"
-                    component={DigStackScreen}
-                    options={{
-                        tabBarLabel: 'Dig',
-                        tabBarIcon: ({ focused }) => (
-                            <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-disc' : 'md-disc'} />
-                        ),
-                    }}
-                />
-                <Tab.Screen
-                    name="Cart"
-                    component={CartStackScreen}
-                    options={{
-                        tabBarLabel: 'Cart',
-                        tabBarIcon: ({ focused }) => (
-                            <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-cart' : 'md-cart'} />
-                        ),
-                    }}
-                />
-            </Tab.Navigator>
-        </NavigationContainer>
+                >
+                    <Tab.Screen
+                        name="Home"
+                        component={HomeStackScreen}
+                        options={{
+                            tabBarLabel: 'Home',
+                            tabBarIcon: ({ focused }) => (
+                                <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-home' : 'md-home'} />
+                            ),
+                        }}
+                    />
+                    <Tab.Screen
+                        name="Search"
+                        component={SearchStackScreen}
+                        options={{
+                            tabBarLabel: 'Search',
+                            tabBarIcon: ({ focused }) => (
+                                <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-search' : 'md-search'} />
+                            ),
+                        }}
+                    />
+                    <Tab.Screen
+                        name="Dig"
+                        component={DigStackScreen}
+                        options={{
+                            tabBarLabel: 'Dig',
+                            tabBarIcon: ({ focused }) => (
+                                <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-disc' : 'md-disc'} />
+                            ),
+                        }}
+                    />
+                    <Tab.Screen
+                        name="Cart"
+                        component={CartStackScreen}
+                        options={{
+                            tabBarLabel: 'Cart',
+                            tabBarIcon: ({ focused }) => (
+                                <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-cart' : 'md-cart'} />
+                            ),
+                        }}
+                    />
+                </Tab.Navigator>
+            </NavigationContainer>
+        </SafeAreaProvider>
     );
 }

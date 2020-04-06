@@ -1,5 +1,6 @@
 import React from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Swiper from 'react-native-deck-swiper';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
@@ -14,11 +15,11 @@ const DigScreen = ({ navigation }) => {
             <View>
                 <Swiper
                     backgroundColor={Colors.darkBlue}
-                    cardHorizontalMargin={10}
+                    cardHorizontalMargin={EStyleSheet.value('10rem')}
                     cards={DATA}
                     renderCard={(card) => DigCard(card, navigation)}
                     stackSize={2}
-                    cardVerticalMargin={10}
+                    cardVerticalMargin={EStyleSheet.value('10rem')}
                 />
             </View>
 
@@ -37,7 +38,7 @@ const styles = EStyleSheet.create({
         color: Colors.nearWhite,
         fontSize: '20rem',
         fontWeight: 'bold',
-        paddingTop: '30rem',
+        paddingTop: 30,
         alignSelf: 'center',
     }
 });

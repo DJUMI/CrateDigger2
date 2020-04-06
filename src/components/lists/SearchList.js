@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { FlatList, ScrollView, Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-
+import Colors from '../../constants/Colors';
 import DATA from '../../constants/DATA';
 import SearchListItem from './items/SearchListItem';
-import SquareButton from '../SquareButton';
+import SearchListFooter from './items/SearchListFooter';
 
 renderEmpty = () => {
     return (
@@ -21,25 +21,26 @@ const SearchList = () => {
     const navigation = useNavigation();
 
     return (
-        <ScrollView showsVerticalScrollIndicator={false}>
-            <FlatList
-                data={DATA.slice(0, numResultsShown)}
-                renderItem={(item) => SearchListItem(item, navigation)}
-                ListEmptyComponent={renderEmpty}
-                showsVerticalScrollIndicator={false}
-            />
-            <View style={styles.buttonContainer}>
-                <SquareButton title='Load more results' onPress={() => {}} />
-            </View>
-        </ScrollView>
+        <FlatList
+            data={DATA.slice(0, numResultsShown)}
+            renderItem={(item) => SearchListItem(item, navigation)}
+            ListEmptyComponent={renderEmpty}
+            ListFooterComponent={SearchListFooter}
+            showsVerticalScrollIndicator={false}
+        />
     );
 };
 
 export default SearchList;
 
 const styles = EStyleSheet.create({
-    buttonContainer: {
-        alignItems: 'center',
-        paddingTop: '10rem'
+    emptyContainer: {
+        alignContent: 'center',
+        paddingTop: '40rem'
+    },
+    emptyText: {
+        fontSize: '15rem',
+        color: Colors.nearWhite,
+        alignSelf: 'center'
     }
 });

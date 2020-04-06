@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image, SafeAreaView, ScrollView, View } from 'react-native';
+import { Image, ScrollView, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Colors from '../constants/Colors';
@@ -37,7 +38,7 @@ const styles = EStyleSheet.create({
         width: '27%',
         aspectRatio: 1,
         alignSelf: 'center',
-        marginTop: '10rem'
+        marginTop: 10
     },
     image: {
         height: "100%",

@@ -1,6 +1,20 @@
-make createNavigationOptions function to clean up main tab navigator
-handle case for empty home list
-add genre filters to dig screen
-restart swiper when last card reached
-cache assets
+general
+    cache assets
+navigation
+    make createNavigationOptions function to clean up main tab navigator
+home
+    handle case for empty home list
+search
+dig
+    add genre filters to dig screen
+    restart swiper when last card reached
+    maybe lower height on card image? need to test with actually images
+cart
+    update swipeable to use effects
+scaling
+    main tab bare icons are cutoff
+    navigation header back button
+    searchbar, filterdrawer
+    dig card is too big swiper margin needs scaling
+
 
