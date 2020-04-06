@@ -1,4 +1,6 @@
 make createNavigationOptions function to clean up main tab navigator
 handle case for empty home list
 add genre filters to dig screen
+restart swiper when last card reached
 cache assets
+

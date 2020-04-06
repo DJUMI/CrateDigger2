@@ -18,7 +18,7 @@ const DigScreen = ({ navigation }) => {
                     cards={DATA}
                     renderCard={(card) => DigCard(card, navigation)}
                     stackSize={2}
-                    cardVerticalMargin={30}
+                    cardVerticalMargin={10}
                 />
             </View>
 

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Colors from '../../../constants/Colors';
 import RoundButton from '../../RoundButton';
@@ -12,7 +13,7 @@ const DigCard = (item, navigation) => {
                     style={styles.artistText}
                     numberOfLines={1}
                 >
-                    {item.id}
+                    {item.artist}
                 </Text>
                 <Text
                     style={styles.titleText}
@@ -22,17 +23,19 @@ const DigCard = (item, navigation) => {
                 </Text>
             </View>
 
+            <View style={styles.imageContainer}>
+                {item.image_url ?
+                    <Image
+                        source={{ uri: item.image_url }}
+                        style={styles.image}
+                    /> :
+                    <Image
+                        source={require('../../../../assets/images/vinylstock.jpg')}
+                        style={styles.image}
+                    />
+                }
+            </View>
 
-            {item.image_url ?
-                <Image
-                    source={{ uri: item.image_url }}
-                    style={styles.image}
-                /> :
-                <Image
-                    source={require('../../../../assets/images/vinylstock.jpg')}
-                    style={styles.image}
-                />
-            }
             <View style={styles.buttonContainer}>
                 <RoundButton title='See Details' onPress={() => navigation.push('Details', { item })} />
                 <RoundButton title='+ Add to Cart' onPress={() => { }} />
@@ -44,30 +47,34 @@ const DigCard = (item, navigation) => {
 
 export default DigCard;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
     container: {
         backgroundColor: Colors.cardGray
     },
     textContainer: {
-        paddingVertical: 5,
-        paddingHorizontal: 15
+        paddingVertical: '5rem',
+        paddingHorizontal: '15rem'
     },
     artistText: {
-        fontSize: 20,
+        fontSize: '20rem',
         color: Colors.darkBlue
     },
     titleText: {
-        fontSize: 25,
+        fontSize: '25rem',
         color: Colors.darkBlue
     },
+    imageContainer: {
+        width: '100%',
+        aspectRatio: 1
+    },
     image: {
-        width: null,
-        height: 300
+        width: '100%',
+        height: '100%'
     },
     buttonContainer: {
         flexDirection: 'row',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingVertical: '10rem',
+        paddingHorizontal: '20rem',
         justifyContent: 'space-between'
     }
 });

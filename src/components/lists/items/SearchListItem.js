@@ -9,16 +9,18 @@ const SearchListItem = ({ item }, navigation) => {
     return (
         <TouchableOpacity onPress={() => navigation.push('Details', { item })}>
             <View style={styles.itemContainer}>
-                {item.image_url ?
-                    <Image
-                        source={{ uri: item.image_url }}
-                        style={styles.image}
-                    /> :
-                    <Image
-                        source={require('../../../../assets/images/vinylstock.jpg')}
-                        style={styles.image}
-                    />
-                }
+                <View style={styles.imageContainer}>
+                    {item.image_url ?
+                        <Image
+                            source={{ uri: item.image_url }}
+                            style={styles.image}
+                        /> :
+                        <Image
+                            source={require('../../../../assets/images/vinylstock.jpg')}
+                            style={styles.image}
+                        />
+                    }
+                </View>
                 <View style={styles.textContainer}>
                     <Text style={styles.text} numberOfLines={1}>{item.artist}</Text>
                     <Text style={styles.titleText} numberOfLines={1}>{item.title}</Text>
@@ -38,6 +40,7 @@ export default SearchListItem;
 
 const styles = EStyleSheet.create({
     container: {
+        backgroundColor: Colors.darkBlue
     },
     itemContainer: {
         flexDirection: 'row',
@@ -45,21 +48,26 @@ const styles = EStyleSheet.create({
         backgroundColor: Colors.darkBlue,
         paddingVertical: '5rem',
         borderBottomWidth: 1,
-        borderBottomColor: Colors.nearWhite
+        borderBottomColor: Colors.nearWhite,
+        height: '100rem'
     },
-    image: {
-        borderRadius: '2rem',
+    imageContainer: {
         height: '100%',
         aspectRatio: 1,
-        marginLeft: '5rem',
-        alignSelf: 'center'
+        marginLeft: '5rem'
+
+    },
+    image: {
+        height: '100%',
+        width: '100%',
+        borderRadius: '2rem',
     },
     textContainer: {
         alignItems: 'flex-start',
         justifyContent: 'center',
         paddingLeft: '5rem',
-        height: '90rem',
-        width: '240rem'
+        height: '100%',
+        width: '64%'
     },
     text: {
         fontSize: '15rem',
@@ -73,7 +81,7 @@ const styles = EStyleSheet.create({
     },
     icon: {
         justifyContent: 'center',
-        height: '90rem',
+        height: '100%',
         marginRight: '5rem'
     }
 });

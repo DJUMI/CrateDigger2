@@ -1,5 +1,7 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
+
 
 import Colors from '../../../constants/Colors';
 
@@ -7,12 +9,14 @@ const HomeListItem = ({ item }, navigation) => {
     return (
         <TouchableOpacity
             style={styles.container}
-            onPress={() => navigation.push('Details', { item } )}
+            onPress={() => navigation.push('Details', { item })}
         >
-            {item.image_url
-                ? <Image source={{ uri: item.image_url }} style={styles.image} />
-                : <Image source={require('../../../../assets/images/vinylstock.jpg')} style={styles.image} />
-            }
+            <View style={styles.imageContainer}>
+                {item.image_url
+                    ? <Image source={{ uri: item.image_url }} style={styles.image} />
+                    : <Image source={require('../../../../assets/images/vinylstock.jpg')} style={styles.image} />
+                }
+            </View>
 
             <View style={styles.titleContainer}>
                 <Text
@@ -28,27 +32,31 @@ const HomeListItem = ({ item }, navigation) => {
 
 export default HomeListItem;
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
     container: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginRight: 15,
-        paddingTop: 5
+        marginRight: '15rem',
+        paddingTop: '5rem',
+        width: '150rem'
+    },
+    imageContainer: {
+        width: '100%',
+        aspectRatio: 1
     },
     image: {
-        borderRadius: 2,
-        width: 150,
-        height: 150
+        height: '100%',
+        width: '100%',
+        borderRadius: '2rem'
     },
     titleContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        width: 150,
-        paddingHorizontal: 1,
-        paddingVertical: 7
+        width: '100%',
+        paddingVertical: '7rem'
     },
     title: {
-        fontSize: 15,
+        fontSize: '15rem',
         color: Colors.nearWhite
     }
 });
