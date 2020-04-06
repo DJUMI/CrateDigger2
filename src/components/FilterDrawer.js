@@ -70,7 +70,7 @@ const FilterDrawer = () => {
                         value={maxPrice}
                         onValueChange={value => { setMaxPrice(value) }}
                         thumbStyle={styles.thumb}
-                        thumbTouchSize={{ width: EStyleSheet.value('40rem'), height: EStyleSheet.value('40') }}
+                        thumbTouchSize={{ width: EStyleSheet.value('40rem'), height: EStyleSheet.value('40rem') }}
                     />
                 </View>
 

@@ -40,7 +40,6 @@ const DigCard = (item, navigation) => {
                 <RoundButton title='See Details' onPress={() => navigation.push('Details', { item })} />
                 <RoundButton title='+ Add to Cart' onPress={() => { }} />
             </View>
-
         </View>
     );
 };
@@ -49,7 +48,7 @@ export default DigCard;
 
 const styles = EStyleSheet.create({
     container: {
-        backgroundColor: Colors.cardGray
+        backgroundColor: Colors.cardGray,
     },
     textContainer: {
         paddingVertical: '5rem',
@@ -65,7 +64,7 @@ const styles = EStyleSheet.create({
     },
     imageContainer: {
         width: '100%',
-        aspectRatio: 1
+        height: '300rem'
     },
     image: {
         width: '100%',
@@ -75,6 +74,6 @@ const styles = EStyleSheet.create({
         flexDirection: 'row',
         paddingVertical: '10rem',
         paddingHorizontal: '20rem',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     }
 });

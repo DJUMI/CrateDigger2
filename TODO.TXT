@@ -5,6 +5,7 @@ navigation
 home
     handle case for empty home list
 search
+    figure out why slider thumb is cut off
 dig
     add genre filters to dig screen
     restart swiper when last card reached
@@ -14,7 +15,6 @@ cart
 scaling
     main tab bare icons are cutoff
     navigation header back button
-    searchbar, filterdrawer
     dig card is too big swiper margin needs scaling
 
 

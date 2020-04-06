@@ -29,11 +29,11 @@ const SearchScreen = ({ navigation }) => {
                 onSubmitEditing={handleSubmit}
                 containerStyle={styles.searchBar}
                 inputContainerStyle={styles.input}
-                searchIcon={{ size: EStyleSheet.value('18rem')}}
-                clearIcon={{ size: EStyleSheet.value('18rem')}}
+                searchIcon={{ size: EStyleSheet.value('18rem') }}
+                clearIcon={{ size: EStyleSheet.value('18rem') }}
                 inputStyle={styles.text}
-                leftIconContainerStyle={{ marginLeft: EStyleSheet.value('8rem')}}
-                rightIconContainerStyle={{ marginRight: EStyleSheet.value('8rem')}}
+                leftIconContainerStyle={{ marginLeft: EStyleSheet.value('8rem') }}
+                rightIconContainerStyle={{ marginRight: EStyleSheet.value('8rem') }}
             />
             <FilterDrawer />
             <SearchList />
@@ -58,7 +58,7 @@ const styles = EStyleSheet.create({
         height: '100%',
         borderRadius: '15rem'
     },
-    text:{
+    text: {
         fontSize: '18rem'
     }
 });

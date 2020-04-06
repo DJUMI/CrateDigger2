@@ -22,7 +22,6 @@ const DigScreen = ({ navigation }) => {
                     cardVerticalMargin={EStyleSheet.value('10rem')}
                 />
             </View>
-
         </SafeAreaView>
     );
 };
