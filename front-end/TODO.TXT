@@ -1,5 +1,7 @@
 general
     cache assets
+    add custom fonts?
+    create loading animation
 navigation
     make createNavigationOptions function to clean up main tab navigator
 home
@@ -13,8 +15,8 @@ dig
 cart
     update swipeable to use effects
 scaling
-    main tab bare icons are cutoff
+    main tab bar icons are cutoff
     navigation header back button
-    dig card is too big swiper margin needs scaling
+    dig card is a little wonky on ipad
 
 
