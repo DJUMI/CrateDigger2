@@ -5,7 +5,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-
 import Colors from '../constants/Colors';
 import DetailsScreen from '../screens/DetailsScreen';
 import CartScreen from '../screens/CartScreen';
@@ -13,9 +12,6 @@ import DigScreen from '../screens/DigScreen';
 import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
 import TabBarIcon from '../components/TabBarIcon';
-
-
-
 
 const defaultOptions = {
     headerTitle: '',
@@ -81,7 +77,7 @@ export default function MainTabNavigator() {
         <SafeAreaProvider>
             <NavigationContainer>
                 <Tab.Navigator
-                    initialRouteName="Dig"
+                    initialRouteName="Home"
                     tabBarOptions={{
                         activeTintColor: Colors.seaGreen,
                         activeIconColor: Colors.seaGreen,

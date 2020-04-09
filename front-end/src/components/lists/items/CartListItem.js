@@ -4,14 +4,14 @@ import { Ionicons } from '@expo/vector-icons';
 import Swipeable from 'react-native-swipeable-row';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-
 import Colors from '../../../constants/Colors';
 
-const CartListItem = ({ item }, navigation) => {
+const CartListItem = ({ item }, navigation, removeFromCart) => {
+
     return (
         <Swipeable rightButtons={[
             <View style={styles.rightButtonContainer}>
-                <TouchableOpacity onPress={() => { }}>
+                <TouchableOpacity onPress={() => removeFromCart(item)}>
                     <Ionicons
                         name='ios-trash'
                         color='#FF0000'

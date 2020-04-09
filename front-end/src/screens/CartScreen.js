@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Colors from '../constants/Colors';
 import CartList from '../components/lists/CartList';
 
-const CartScreen = ({ navigation }) => {
+const CartScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.headerContainer}>
@@ -18,7 +18,6 @@ const CartScreen = ({ navigation }) => {
                     <Text style={styles.headerText}>Price</Text>
                 </View>
             </View>
-
             <CartList />
         </SafeAreaView>
     );

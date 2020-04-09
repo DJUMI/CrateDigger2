@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-
 import Colors from '../../../constants/Colors';
 import SquareButton from '../../SquareButton';
+import { Context } from '../../../context/cartContext';
 
 const CartListFooter = () => {
+    const { state, clearCart } = useContext(Context);
+
     return (
         <View>
             <View style={styles.container}>
                 <Text style={styles.text}>Total:</Text>
-                <Text style={styles.text}>$55.09</Text>
+                <Text style={styles.text}>${parseFloat(Math.round(state.cartTotal * 100) / 100).toFixed(2)}</Text> 
             </View>
 
             <View style={styles.buttonContainer}>
-                <SquareButton title='Check out with Discogs' onPress={() => {}} />
+                <SquareButton title='Check out with Discogs' onPress={() => {}} /> 
+                <SquareButton title='Clear Cart' onPress={clearCart} />
             </View>
         </View>
     );

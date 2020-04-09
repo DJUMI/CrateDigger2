@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Image, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Colors from '../constants/Colors';
 import HomeList from '../components/lists/HomeList';
-
+import { Context as CartContext } from '../context/cartContext';
 
 const HomeScreen = () => {
+    const { loadCart } = useContext(CartContext);
+
+    useEffect(() => {
+        if (loadCart) {
+            loadCart();
+        }
+    }, [loadCart]);
+
     return (
         <SafeAreaView style={styles.container}>
             <View>
@@ -17,13 +25,13 @@ const HomeScreen = () => {
                     </View>
                     <HomeList title="What's New" />
                     <HomeList title="What's Hot" />
-                    <HomeList title="New House" />
+                    {/* <HomeList title="New House" />
                     <HomeList title="New Techno" />
                     <HomeList title="New Drum N Bass" />
                     <HomeList title="New Acid" />
                     <HomeList title="New Hip-Hop" />
                     <HomeList title="New Electro" />
-                    <HomeList title="New Deep House" />
+                    <HomeList title="New Deep House" /> */}
                 </ScrollView>
             </View>
         </SafeAreaView>

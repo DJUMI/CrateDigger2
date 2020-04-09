@@ -14,9 +14,8 @@ dig
     maybe lower height on card image? need to test with actually images
 cart
     update swipeable to use effects
+    add cart to async storage
 scaling
     main tab bar icons are cutoff
     navigation header back button
     dig card is a little wonky on ipad
-
-

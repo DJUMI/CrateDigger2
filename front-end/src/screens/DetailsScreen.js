@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Image, Linking, ScrollView, Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
@@ -6,9 +6,11 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import Colors from '../constants/Colors';
 import HomeList from '../components/lists/HomeList';
 import RoundButton from '../components/RoundButton';
+import { Context as CartContext } from '../context/cartContext';
 
 const DetailsScreen = ({ route }) => {
     const { item } = route.params;
+    const { addToCart } = useContext(CartContext);
 
     return (
         <ScrollView style={styles.container}>
@@ -19,7 +21,7 @@ const DetailsScreen = ({ route }) => {
                     <Text style={styles.infoText}>{item.label}</Text>
                     <Text style={styles.infoText}>{item.format}</Text>
                     <Text style={styles.infoText}>${parseFloat(Math.round(item.price * 100) / 100).toFixed(2)}</Text>
-                    <Text style={styles.infoText}>{item.genre}</Text>
+                    <Text style={styles.infoText}>{item.styles}</Text>
                 </View>
                 <View style={styles.imageContainer}>
                     {item.image_url
@@ -31,7 +33,7 @@ const DetailsScreen = ({ route }) => {
             </View>
 
             <View style={styles.buttonContainer}>
-                <RoundButton title='+ Add to Cart' onPress={() => { }} />
+                <RoundButton title='+ Add to Cart' onPress={() => addToCart(item)} />
                 {item.video_url
                     ? <RoundButton title='Listen' onPress={() => { Linking.openURL(item.video_url) }} />
                     : <RoundButton disabled title='Listen' onPress={() => { }} />

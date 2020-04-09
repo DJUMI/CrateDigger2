@@ -9,6 +9,7 @@ import DATA from '../constants/DATA';
 import DigCard from '../components/lists/items/DigCard';
 
 const DigScreen = ({ navigation }) => {
+    
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.header}>Genre</Text>

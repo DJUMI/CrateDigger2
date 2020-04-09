@@ -1,15 +1,56 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Colors from '../../constants/Colors';
-import DATA from '../../constants/DATA';
 import HomeListItem from './items/HomeListItem';
+import { Context as ShopContext } from '../../context/shopContext';
 
 const HomeList = ({ title }) => {
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState();
+    const [query, setQuery] = useState();
+    const { state, fetchProducts } = useContext(ShopContext);
     const navigation = useNavigation();
+
+    const getQuery = () => {
+        switch (title) {
+            case 'Whats New':
+                setQuery({ query: { status: "For Sale" } });
+                return;
+            case 'Staff Picks':
+                setQuery({ query: { label: "RCA" } });
+                return;
+            case 'New House':
+                setQuery({ query: { styles: { $regex: /house/, '$options': 'i' } } });
+                return;
+            case 'New Techno':
+                setQuery({ query: { styles: { $regex: /techno/, '$options': 'i' } } });
+                return;
+            case 'New Drum n Bass':
+                setQuery({ query: { styles: { $regex: /drum n bass/, '$options': 'i' } } });
+                return;
+            case 'New Acid':
+                setQuery({ query: { styles: { $regex: /acid/, '$options': 'i' } } });
+                return;
+            case 'New Hip-Hop':
+                setQuery({ query: { styles: { $regex: /hip hop/, '$options': 'i' } } });
+                return;
+            case 'New Electro':
+                setQuery({ query: { styles: { $regex: /electro/, '$options': 'i' } } });
+                return;
+            case 'New Deep House':
+                setQuery({ query: { styles: { $regex: /deep house/, '$options': 'i' } } });
+                return;
+            default:
+                return;
+        }
+    };
+
+    useEffect(() => {
+        getQuery();
+        fetchProducts(query);
+    }, [query]);
 
     return (
         isLoading
@@ -28,8 +69,8 @@ const HomeList = ({ title }) => {
                 <View style={styles.listContainer}>
                     <FlatList
                         horizontal
-                        data={DATA}
-                        keyExtractor={item => item.id}
+                        data={state.products}
+                        keyExtractor={item => item._id}
                         navigation={navigation}
                         renderItem={(item) => HomeListItem(item, navigation)}
                         showsHorizontalScrollIndicator={false}
