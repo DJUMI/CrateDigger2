@@ -9,22 +9,15 @@ import Colors from '../constants/Colors';
 import DigCard from '../components/lists/items/DigCard';
 import SquareButton from '../components/SquareButton';
 import { Context as CartContext } from '../context/cartContext';
-import { Context as ShopContext } from '../context/shopContext';
+import useProducts from '../hooks/useProducts';
 
 const genres = ['Acid', 'Deep House', 'Disco', 'Downtempo', 'Drum n Bass', 'Electro', 'Hip-hop', 'House', 'Techno', 'None', 'Cancel'];
 
 const DigScreen = ({ navigation }) => {
     const { addToCart } = useContext(CartContext);
-    const { state, fetchProducts } = useContext(ShopContext);
-    const [query, setQuery] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        setIsLoading(true);
-        fetchProducts();
-        setIsLoading(false);
-    }, [query]);
-
+    const [query, setQuery] = useState();
+    const [products, isLoading] = useProducts(query);
+ 
     const showActionSheet = () => {
         this.ActionSheet.show();
     };
@@ -43,7 +36,7 @@ const DigScreen = ({ navigation }) => {
                     : <Swiper
                         backgroundColor={Colors.darkBlue}
                         cardHorizontalMargin={EStyleSheet.value('10rem')}
-                        cards={state.products}
+                        cards={products}
                         renderCard={(card) => DigCard(card, navigation, addToCart)}
                         stackSize={2}
                         cardVerticalMargin={EStyleSheet.value('10rem')}

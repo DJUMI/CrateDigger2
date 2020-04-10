@@ -4,7 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Colors from '../../constants/Colors';
-import DATA from '../../constants/DATA';
 import SearchListItem from './items/SearchListItem';
 import SearchListFooter from './items/SearchListFooter';
 
@@ -27,7 +26,7 @@ const SearchList = ({ data }) => {
             ListEmptyComponent={renderEmpty}
             ListFooterComponent={SearchListFooter}
             showsVerticalScrollIndicator={false}
-            keyExtractor={item => item._id}
+            keyExtractor={item => item._id.toString()}
         />
     );
 };

@@ -25,7 +25,7 @@ const CartList = () => {
         <FlatList
             data={state.cart}
             renderItem={(item) => CartListItem(item, navigation, removeFromCart)}
-            keyExtractor={item => item._id}
+            keyExtractor={item => item._id.toString()}
             ListEmptyComponent={renderCartEmpty}
             ListFooterComponent={CartListFooter}
             showsVerticalScrollIndicator={false}

@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
+import React from 'react';
+import { ActivityIndicator, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SearchBar } from 'react-native-elements';
 
-
 import Colors from '../constants/Colors';
 import FilterDrawer from '../components/FilterDrawer';
 import SearchList from '../components/lists/SearchList';
-import { Context as ShopContext } from '../context/shopContext';
+import useProducts from '../hooks/useProducts';
 
 const handleSearch = () => {
 
@@ -19,13 +18,7 @@ const handleSubmit = () => {
 };
 
 const SearchScreen = ({ navigation }) => {
-    const { state, fetchProducts } = useContext(ShopContext);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        fetchProducts();
-        setIsLoading(false);
-    }, []);
+    const [products, isLoading] = useProducts("What's New");
 
     return (
         <SafeAreaView style={styles.container}>
@@ -45,9 +38,11 @@ const SearchScreen = ({ navigation }) => {
                 rightIconContainerStyle={{ marginRight: EStyleSheet.value('8rem') }}
             />
             <FilterDrawer />
-            {state.products.length != 0
-                ? <SearchList data={state.products}/>
-                : <Text style={{ color: Colors.nearWhite  }}>We Loading</Text>
+            {isLoading
+                ? <View style={styles.loadingContainer}>
+                    <ActivityIndicator size='large' />
+                </View>
+                : <SearchList data={products} />
             }
         </SafeAreaView>
     );
@@ -72,5 +67,9 @@ const styles = EStyleSheet.create({
     },
     text: {
         fontSize: '18rem'
+    },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center'
     }
 });
