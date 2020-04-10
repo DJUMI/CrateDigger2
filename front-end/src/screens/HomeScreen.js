@@ -24,14 +24,14 @@ const HomeScreen = () => {
                         <Image source={require("../../assets/images/logo.png")} style={styles.image} />
                     </View>
                     <HomeList title="What's New" />
-                    <HomeList title="What's Hot" />
-                    {/* <HomeList title="New House" />
+                    <HomeList title="Staff Picks" />
+                    <HomeList title="New House" />
                     <HomeList title="New Techno" />
                     <HomeList title="New Drum N Bass" />
                     <HomeList title="New Acid" />
                     <HomeList title="New Hip-Hop" />
                     <HomeList title="New Electro" />
-                    <HomeList title="New Deep House" /> */}
+                    <HomeList title="New Deep House" />
                 </ScrollView>
             </View>
         </SafeAreaView>

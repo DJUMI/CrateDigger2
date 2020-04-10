@@ -15,7 +15,7 @@ const CartListItem = ({ item }, navigation, removeFromCart) => {
                     <Ionicons
                         name='ios-trash'
                         color='#FF0000'
-                        size={40}
+                        size={EStyleSheet.value('40rem')}
                     />
                 </TouchableOpacity>
             </View>

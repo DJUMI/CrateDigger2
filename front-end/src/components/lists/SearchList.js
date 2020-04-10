@@ -16,17 +16,18 @@ renderEmpty = () => {
     );
 }
 
-const SearchList = () => {
+const SearchList = ({ data }) => {
     const [numResultsShown, setNumResultsShown] = useState(20);
     const navigation = useNavigation();
 
     return (
         <FlatList
-            data={DATA.slice(0, numResultsShown)}
+            data={data.slice(0, numResultsShown)}
             renderItem={(item) => SearchListItem(item, navigation)}
             ListEmptyComponent={renderEmpty}
             ListFooterComponent={SearchListFooter}
             showsVerticalScrollIndicator={false}
+            keyExtractor={item => item._id}
         />
     );
 };

@@ -9,16 +9,16 @@ import { Context as ShopContext } from '../../context/shopContext';
 
 const HomeList = ({ title }) => {
     const [isLoading, setIsLoading] = useState();
-    const [query, setQuery] = useState();
+    const [query, setQuery] = useState({});
     const { state, fetchProducts } = useContext(ShopContext);
     const navigation = useNavigation();
 
     const getQuery = () => {
         switch (title) {
-            case 'Whats New':
+            case "What's New":
                 setQuery({ query: { status: "For Sale" } });
                 return;
-            case 'Staff Picks':
+            case "Staff Picks":
                 setQuery({ query: { label: "RCA" } });
                 return;
             case 'New House':
@@ -49,6 +49,9 @@ const HomeList = ({ title }) => {
 
     useEffect(() => {
         getQuery();
+    }, []);
+
+    useEffect(() => {
         fetchProducts(query);
     }, [query]);
 

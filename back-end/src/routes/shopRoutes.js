@@ -8,8 +8,8 @@ const router = express.Router();
 
 // GET /shop/products
 router.get('/products', async (req, res, next) => {
-    const products = await Product.find({ status: 'For Sale' });
-    console.log(req);
+    console.log(req.query);
+    const products = await Product.find().sort({ listing_id: -1 }).limit(20);
     res.send(products);
 
 });
