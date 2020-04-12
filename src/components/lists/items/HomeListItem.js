@@ -2,14 +2,13 @@ import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-
 import Colors from '../../../constants/Colors';
 
 const HomeListItem = ({ item }, navigation) => {
     return (
         <TouchableOpacity
             style={styles.container}
-            onPress={() => navigation.push('Details', { item })}
+            onPress={() => navigation.push('Details', { prodId: item.listing_id })}
         >
             <View style={styles.imageContainer}>
                 {item.image_url

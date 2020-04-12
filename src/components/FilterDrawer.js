@@ -9,8 +9,6 @@ import Colors from '../constants/Colors';
 import CheckBoxGroup from './CheckBoxGroup';
 import RoundButton from './RoundButton';
 
-
-
 const FilterDrawer = () => {
     const [active, setActive] = useState([]);
     const [maxPrice, setMaxPrice] = useState(1000);

@@ -7,7 +7,6 @@ import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 
 import MainTabNavigator from './src/navigation/MainTabNavigator';
-import { Provider as ShopProvider } from './src/context/shopContext';
 import { Provider as CartProvider } from './src/context/cartContext';
 
 export default () => {
@@ -68,11 +67,9 @@ export default () => {
     );
   } else {
     return (
-      <ShopProvider>
-        <CartProvider>
-          <MainTabNavigator />
-        </CartProvider>
-      </ShopProvider>
+      <CartProvider>
+        <MainTabNavigator />
+      </CartProvider>
     );
   }
 };

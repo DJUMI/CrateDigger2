@@ -37,7 +37,7 @@ const DigCard = (item, navigation, addToCart) => {
             </View>
 
             <View style={styles.buttonContainer}>
-                <RoundButton title='See Details' onPress={() => navigation.push('Details', { item })} />
+                <RoundButton title='See Details' onPress={() => navigation.push('Details', { prodId: item.listing_id })} />
                 <RoundButton title='+ Add to Cart' onPress={() => addToCart(item)} />
             </View>
         </View>

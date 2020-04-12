@@ -6,32 +6,36 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import ActionSheet from 'react-native-actionsheet';
 
 import Colors from '../constants/Colors';
+import Genres from '../constants/Genres';
 import DigCard from '../components/lists/items/DigCard';
 import SquareButton from '../components/SquareButton';
 import { Context as CartContext } from '../context/cartContext';
 import useProducts from '../hooks/useProducts';
 
-const genres = ['Acid', 'Deep House', 'Disco', 'Downtempo', 'Drum n Bass', 'Electro', 'Hip-hop', 'House', 'Techno', 'None', 'Cancel'];
-
 const DigScreen = ({ navigation }) => {
     const { addToCart } = useContext(CartContext);
-    const [query, setQuery] = useState();
-    const [products, isLoading] = useProducts(query);
+    const [genre, setGenre] = useState('');
+    const [refreshing, setRefreshing]  = useState(false);
+    const [products, isLoading] = useProducts('dig', genre);
  
     const showActionSheet = () => {
         this.ActionSheet.show();
     };
 
+    useEffect(() => {
+        setRefreshing(false);
+    }, [products]);
+
     return (
         <SafeAreaView style={styles.container}>
-            {query
-                ? <Text style={styles.header}>{query}</Text>
+            {genre
+                ? <Text style={styles.header}>{genre}</Text>
                 : <Text style={styles.header}>All</Text>
             }
             <View style={styles.cardContainer}>
-                {isLoading
+                {isLoading || refreshing
                     ? <View style={styles.loadingContainer}>
-                        <ActivityIndicator size={'large'} />
+                        <ActivityIndicator />
                     </View>
                     : <Swiper
                         backgroundColor={Colors.darkBlue}
@@ -47,16 +51,20 @@ const DigScreen = ({ navigation }) => {
                 <SquareButton title='Genre' onPress={showActionSheet} />
                 <ActionSheet
                     ref={o => this.ActionSheet = o}
-                    options={genres}
+                    options={Genres}
                     cancelButtonIndex={10}
                     destructiveButtonIndex={9}
                     style={styles.actionSheet}
-                    onPress={(index) => {
+                    onPress={async (index) => {
                         if (index == 9) {
-                            setQuery('');
+                            console.log('refreshing')
+                            setRefreshing(true);
+                            setGenre('');
                         }
                         else if (index != 10) {
-                            setQuery(genres[index]);
+                            console.log('refreshing')
+                            setRefreshing(true);
+                            setGenre(Genres[index]);
                         }
                     }}
                 />

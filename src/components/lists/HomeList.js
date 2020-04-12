@@ -7,36 +7,33 @@ import Colors from '../../constants/Colors';
 import HomeListItem from './items/HomeListItem';
 import useProducts from '../../hooks/useProducts';
 
-const HomeList = ({ title }) => {
-    const [products, isLoading] = useProducts(title);
+const HomeList = ({ title, type, genre }) => {
+    const [products, isLoading] = useProducts(type, genre);
     const navigation = useNavigation();
 
     return (
-        
-        isLoading
-            //list is loading
-            ? <View style={styles.activityContainer}>
-                <ActivityIndicator />
+        <View>
+            <View style={styles.headerContainer}>
+                <Text style={styles.header}>
+                    {title}
+                </Text>
             </View>
-            //loading complete
-            : <View>
-                <View style={styles.headerContainer}>
-                    <Text style={styles.header}>
-                        {title}
-                    </Text>
-                </View>
 
-                <View style={styles.listContainer}>
-                    <FlatList
+            <View style={styles.listContainer}>
+                {isLoading
+                    ? <View style={styles.activityContainer}>
+                        <ActivityIndicator />
+                    </View>
+                    : <FlatList
                         horizontal
                         data={products}
                         keyExtractor={item => item._id.toString()}
                         navigation={navigation}
                         renderItem={(item) => HomeListItem(item, navigation)}
                         showsHorizontalScrollIndicator={false}
-                    />
-                </View>
+                    />}
             </View>
+        </View>
     );
 };
 
@@ -61,7 +58,7 @@ const styles = EStyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignContent: 'center',
-        paddingTop: '85rem',
-        paddingBottom: '85rem'
+        paddingTop: '70rem',
+        paddingBottom: '70rem'
     }
 });

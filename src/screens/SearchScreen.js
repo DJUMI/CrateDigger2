@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -17,8 +17,13 @@ const handleSubmit = () => {
 
 };
 
-const SearchScreen = ({ navigation }) => {
-    const [products, isLoading] = useProducts("What's New");
+const SearchScreen = () => {
+    const [format, setFormat] = useState('');
+    const [genre, setGenre] = useState('');
+    const [price, setPrice] = useState(1000);
+    const [query, setQuery] = useState('');
+    const [sort, setSort] = useState('');
+    const [products, isLoading] = useProducts('search', genreFilter, query);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -40,7 +45,7 @@ const SearchScreen = ({ navigation }) => {
             <FilterDrawer />
             {isLoading
                 ? <View style={styles.loadingContainer}>
-                    <ActivityIndicator size='large' />
+                    <ActivityIndicator />
                 </View>
                 : <SearchList data={products} />
             }

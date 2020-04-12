@@ -7,7 +7,7 @@ import Colors from '../../../constants/Colors';
 
 const SearchListItem = ({ item }, navigation) => {
     return (
-        <TouchableOpacity onPress={() => navigation.push('Details', { item })}>
+        <TouchableOpacity onPress={() => navigation.push('Details', { prodId: item.listing_id })}>
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
                     {item.image_url ?

@@ -1,47 +1,31 @@
 import { useState, useEffect } from "react";
 import { Stitch, RemoteMongoClient } from 'mongodb-stitch-react-native-sdk';
 
-export default (title) => {
+export default (type, genre, format, price, query, sort) => {
     const [isLoading, setIsLoading] = useState(true);
     const [products, setProducts] = useState([]);
 
-    const getQuery = (title) => {
-        console.log('getting query')
-        switch (title) {
-            case "What's New":
-                fetchData({ status: "For Sale" });
+    const getQuery = (type, genre) => {
+        switch (type) {
+            case 'new':
+                fetchHomeListData({ status: "For Sale" });
                 return;
-            case "Staff Picks":
-                fetchData({ label: "RCA" });
+            case 'genre':
+                fetchHomeListData({ styles: { $regex: genre, '$options': 'i' } });
                 return;
-            case 'New House':
-                fetchData({ styles: { $regex: /house/, '$options': 'i' } });
+            case 'dig':
+                fetchDigData(genre);
                 return;
-            case 'New Techno':
-                fetchData({ styles: { $regex: /techno/, '$options': 'i' } });
-                return;
-            case 'New Drum N Bass':
-                fetchData({ styles: { $regex: /drum n bass/, '$options': 'i' } });
-                return;
-            case 'New Acid':
-                fetchData({ styles: { $regex: /acid/, '$options': 'i' } });
-                return;
-            case 'New Hip-Hop':
-                fetchData({ styles: { $regex: /hip hop/, '$options': 'i' } });
-                return;
-            case 'New Electro':
-                fetchData({ styles: { $regex: /electro/, '$options': 'i' } });
-                return;
-            case 'New Deep House':
-                fetchData({ styles: { $regex: /deep house/, '$options': 'i' } });
+            case 'search':
+                fetchSearchListData({ status: "For Sale" });
                 return;
             default:
                 return;
         }
     };
 
-    const fetchData = (query) => {
-        console.log('starting fetch')
+    const fetchHomeListData = (query) => {
+        console.log('fetching home data')
         const mongodb = Stitch.defaultAppClient.getServiceClient(
             RemoteMongoClient.factory,
             'mongodb-atlas'
@@ -49,7 +33,94 @@ export default (title) => {
         mongodb
             .db('shop')
             .collection('products')
-            .find(query, { sort: { listing_id: -1 }, limit: 20 })
+            .find(
+                query,
+                {
+                    projection:
+                    {
+                        listing_id: 1,
+                        image_url: 1,
+                        title: 1
+                    }
+                },
+                {
+                    sort: { listing_id: -1 },
+                    limit: 20
+                })
+            .asArray()
+            .then(fetchedProducts => {
+                setProducts(fetchedProducts);
+            })
+            .then(() => {
+                setIsLoading(false);
+            })
+            .catch(err => {
+                console.log(`Fetching products failed: ${err}`);
+            });
+    };
+
+    const fetchDigData = (genre) => {
+        console.log('fetching dig data')
+        const mongodb = Stitch.defaultAppClient.getServiceClient(
+            RemoteMongoClient.factory,
+            'mongodb-atlas'
+        );
+        mongodb
+            .db('shop')
+            .collection('products')
+            .aggregate([{
+                $match: {
+                    $and: [{
+                        status: "For Sale"
+                    }, {
+                        styles: {
+                            $regex: genre, '$options': 'i'
+                        }
+                    }]
+                }
+            }, {
+                $sample: {
+                    size: 100
+                }
+            }])
+            .asArray()
+            .then(fetchedProducts => {
+                setProducts(fetchedProducts);
+            })
+            .then(() => {
+                setIsLoading(false);
+            })
+            .catch(err => {
+                console.log(`Fetching products failed: ${err}`);
+            });
+    };
+
+    const fetchSearchListData = (query) => {
+        console.log('fetching search data')
+        const mongodb = Stitch.defaultAppClient.getServiceClient(
+            RemoteMongoClient.factory,
+            'mongodb-atlas'
+        );
+        mongodb
+            .db('shop')
+            .collection('products')
+            .find(
+                query,
+                {
+                    projection:
+                    {
+                        listing_id: 1,
+                        image_url: 1,
+                        artist: 1,
+                        title: 1,
+                        label: 1,
+                        format: 1
+                    }
+                },
+                {
+                    sort: { listing_id: -1 },
+                    limit: 20
+                })
             .asArray()
             .then(fetchedProducts => {
                 setProducts(fetchedProducts);
@@ -63,8 +134,8 @@ export default (title) => {
     };
 
     useEffect(() => {
-        getQuery(title);
-    }, []);
+        getQuery(type, genre);
+    }, [genre]);
 
     return [products, isLoading];
 };

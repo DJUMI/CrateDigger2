@@ -17,8 +17,7 @@ renderCartEmpty = () => {
 }
 
 const CartList = () => {
-    const { state, clearCart, removeFromCart } = useContext(CartContext);
-
+    const { state, removeFromCart } = useContext(CartContext);
     const navigation = useNavigation();
 
     return (
