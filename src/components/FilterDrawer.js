@@ -8,10 +8,37 @@ import { Slider } from 'react-native-elements';
 import Colors from '../constants/Colors';
 import CheckBoxGroup from './CheckBoxGroup';
 import RoundButton from './RoundButton';
+import SortFilters from './SortFilters';
+import FormatFilters from './FormatFilters';
+import GenreFilters from './GenreFilters';
 
-const FilterDrawer = () => {
+const FilterDrawer = ({ handleFilter }) => {
     const [active, setActive] = useState([]);
+    const [format, setFormat] = useState([]);
     const [maxPrice, setMaxPrice] = useState(1000);
+    const [sort, setSort] = useState(0);
+
+    const handleFormat = (f) => {
+        console.log(`setting format: ${f}`);
+        setFormat(f);
+    };
+
+    const handleGenre = () => {
+        console.log('setting genre');
+    };
+
+    const handlePrice = () => {
+        console.log('setting price');
+    };
+
+    const handleSort = (i) => {
+        console.log(`setting sort: ${i}`);
+        setSort(i);
+    };
+
+    const handleApply = () => {
+        handleFilter(format, sort);
+    }
 
     const renderHeader = () => {
         return (
@@ -29,25 +56,24 @@ const FilterDrawer = () => {
 
     const renderContent = () => {
         return (
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <CheckBoxGroup
+            <ScrollView style={{ height: 500 }} showsVerticalScrollIndicator={false}>
+                <SortFilters
                     checkBoxes={[
-                        { label: 'Newest', selected: true },
-                        { label: 'Highest Price', selected: false },
-                        { label: 'Lowest Price', selected: false }
+                        { label: 'Newest' },
+                        { label: 'Highest Price' },
+                        { label: 'Lowest Price' }
                     ]}
-                    onPress={() => { console.log('hi') }}
+                    onPress={(i) => handleSort(i)}
                     title={'Sort By'}
-                    noBorderTop
                 />
 
-                <CheckBoxGroup
+                <FormatFilters
                     checkBoxes={[
-                        { label: 'Vinyl', selected: false },
-                        { label: 'CD', selected: false },
-                        { label: 'Cassette', selected: false }
+                        { label: 'Vinyl' },
+                        { label: 'CD' },
+                        { label: 'Cassette' }
                     ]}
-                    onPress={() => { console.log('hi') }}
+                    onPress={(i) => handleFormat(i)}
                     title={'Format'}
                 />
 
@@ -72,13 +98,29 @@ const FilterDrawer = () => {
                     />
                 </View>
 
-                <CheckBoxGroup
+                <GenreFilters
+                    checkBoxes={[
+                        { label: 'House' },
+                        { label: 'Techno' },
+                        { label: 'DnB' },
+                        { label: 'Acid'},
+                        { label: 'Hip-Hop' },
+                        { label: 'Electro'},
+                        { label: 'Deep House' },
+                        { label: 'Disco' },
+                        { label: 'Rock' }
+                    ]}
+                    onPress={() => handleGenre()}
+                    title={'Genre'}
+                />
+
+                {/* <CheckBoxGroup
                     checkBoxes={[
                         { label: 'House', selected: false },
                         { label: 'Techno', selected: false },
                         { label: 'DnB', selected: false }
                     ]}
-                    onPress={() => { console.log('hi') }}
+                    onPress={handleGenre}
                     title={'Genre'}
                 />
                 <CheckBoxGroup
@@ -87,7 +129,7 @@ const FilterDrawer = () => {
                         { label: 'Hip-Hop', selected: false },
                         { label: 'Electro', selected: false }
                     ]}
-                    onPress={() => { console.log('hi') }}
+                    onPress={handleGenre}
                 />
                 <CheckBoxGroup
                     checkBoxes={[
@@ -95,11 +137,11 @@ const FilterDrawer = () => {
                         { label: 'Disco', selected: false },
                         { label: 'Rock', selected: false }
                     ]}
-                    onPress={() => { console.log('hi') }}
-                />
+                    onPress={handleGenre}
+                /> */}
 
                 <View style={styles.buttonContainer}>
-                    <RoundButton title='Apply' />
+                    <RoundButton title='Apply' onPress={handleApply} />
                     <View style={{ height: EStyleSheet.value('20rem') }} />
                     <RoundButton title='Clear' />
                 </View>
@@ -159,15 +201,16 @@ const styles = EStyleSheet.create({
         paddingHorizontal: '25rem',
         paddingBottom: '15rem',
     },
-    thumb:{
-        height: '20rem', 
-        width: '20rem', 
+    thumb: {
+        height: '20rem',
+        width: '20rem',
         borderRadius: '10rem'
     },
     buttonContainer: {
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingTop: '25rem',
-        paddingBottom: '15rem'
+        paddingBottom: '15rem',
+        marginBottom: 500
     }
 });

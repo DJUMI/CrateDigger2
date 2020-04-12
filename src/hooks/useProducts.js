@@ -5,7 +5,7 @@ export default (type, genre, format, price, query, sort) => {
     const [isLoading, setIsLoading] = useState(true);
     const [products, setProducts] = useState([]);
 
-    const getQuery = (type, genre) => {
+    const getQuery = (type, genre, format, price, query, sort) => {
         switch (type) {
             case 'new':
                 fetchHomeListData({ status: "For Sale" });
@@ -17,7 +17,7 @@ export default (type, genre, format, price, query, sort) => {
                 fetchDigData(genre);
                 return;
             case 'search':
-                fetchSearchListData({ status: "For Sale" });
+                fetchSearchListData(genre, format, price, query, sort);
                 return;
             default:
                 return;
@@ -95,8 +95,8 @@ export default (type, genre, format, price, query, sort) => {
             });
     };
 
-    const fetchSearchListData = (query) => {
-        console.log('fetching search data')
+    const fetchSearchListData = (genre, format, price, query, sort) => {
+        console.log(`fetching search data query: ${query}`)
         const mongodb = Stitch.defaultAppClient.getServiceClient(
             RemoteMongoClient.factory,
             'mongodb-atlas'
@@ -104,22 +104,19 @@ export default (type, genre, format, price, query, sort) => {
         mongodb
             .db('shop')
             .collection('products')
-            .find(
-                query,
-                {
-                    projection:
-                    {
-                        listing_id: 1,
-                        image_url: 1,
-                        artist: 1,
-                        title: 1,
-                        label: 1,
-                        format: 1
-                    }
+            .find({
+                $and: [{
+                    $or: [{ label: { $regex: query, '$options': 'i' } },
+                    { artist: { $regex: query, '$options': 'i' } },
+                    { title: { $regex: query, '$options': 'i' } }]
                 },
+                { price: { $lte: price } },
+                //{ $or: [{ format: { $regex: format, '$options': 'i' } }] },
+                //{ $or: [{ genre: { $regex: genre, '$options': 'i' } }] },
+                ]
+            },
                 {
-                    sort: { listing_id: -1 },
-                    limit: 20
+                    sort: { price: -1 }
                 })
             .asArray()
             .then(fetchedProducts => {
@@ -134,8 +131,8 @@ export default (type, genre, format, price, query, sort) => {
     };
 
     useEffect(() => {
-        getQuery(type, genre);
-    }, [genre]);
+        getQuery(type, genre, format, price, query, sort);
+    }, [genre, query]);
 
     return [products, isLoading];
 };

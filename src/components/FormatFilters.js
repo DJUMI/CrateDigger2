@@ -5,41 +5,37 @@ import { CheckBox } from 'react-native-elements';
 
 import Colors from '../constants/Colors';
 
-const CheckBoxGroup = ({ checkBoxes, onPress, title, noBorderTop }) => {
+const FormatFilters = ({ checkBoxes, onPress, title }) => {
+    const [selected, setSelected] = useState([]);
 
-    let borderTop;
-    noBorderTop ? borderTop = 0 : borderTop = 1
-    const titleStyle = EStyleSheet.create({
-        title: {
-            borderColor: Colors.lightGray,
-            paddingHorizontal: '15rem',
-            paddingVertical: '10rem',
-            borderTopWidth: borderTop
+    const onSelect = (item) => {
+        var updatedSelections = selected;
+        if (!updatedSelections.includes(item.label)) {
+            updatedSelections.push(item.label);
+        } else {
+            updatedSelections = selected.filter(i => !i.includes(item.label));
         }
-    })
-
-    const [checked, setChecked] = useState(0);
+        setSelected(updatedSelections);
+        console.log(updatedSelections);
+    };
 
     return (
         <>
-            {title
-                ? <View style={titleStyle.title}>
-                    <Text style={styles.titleText}>{title}</Text>
-                </View>
-                : null
-            }
+            <View style={styles.title}>
+                <Text style={styles.titleText}>{title}</Text>
+            </View>
             <View style={styles.container}>
                 {checkBoxes.map((checkBox, index) => {
                     return (
                         <CheckBox
                             key={index}
                             checkedColor={Colors.nearWhite}
-                            checked={checked == index}
+                            checked={selected.includes(checkBox.label)}
                             containerStyle={styles.checkBox}
                             iconRight
                             onPress={() => {
-                                setChecked(index);
-                                onPress(index);
+                                onSelect(checkBox)
+                                onPress(selected);
                             }}
                             right
                             textStyle={styles.text}
@@ -54,9 +50,15 @@ const CheckBoxGroup = ({ checkBoxes, onPress, title, noBorderTop }) => {
     );
 };
 
-export default CheckBoxGroup;
+export default FormatFilters;
 
 const styles = EStyleSheet.create({
+    title: {
+        borderColor: Colors.lightGray,
+        paddingHorizontal: '15rem',
+        paddingVertical: '10rem',
+        borderTopWidth: 1
+    },
     titleText: {
         color: Colors.nearWhite,
         fontSize: '15rem'

@@ -9,21 +9,29 @@ import FilterDrawer from '../components/FilterDrawer';
 import SearchList from '../components/lists/SearchList';
 import useProducts from '../hooks/useProducts';
 
-const handleSearch = () => {
 
-};
-
-const handleSubmit = () => {
-
-};
 
 const SearchScreen = () => {
-    const [format, setFormat] = useState('');
-    const [genre, setGenre] = useState('');
+    const [format, setFormat] = useState([]);
+    const [genre, setGenre] = useState([]);
     const [price, setPrice] = useState(1000);
     const [query, setQuery] = useState('');
     const [sort, setSort] = useState('');
-    const [products, isLoading] = useProducts('search', genreFilter, query);
+    const [value, setValue] = useState('');
+    const [products, isLoading] = useProducts('search', genre, format, price, query, sort);
+
+    const handleSearch = text => {
+        setValue(text);
+    };
+
+    const handleSubmit = (props) => {
+        setQuery(props.nativeEvent.text);
+    };
+
+    const handleFilter = (format, sort) => {
+        console.log(format);
+        console.log(sort);
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -32,7 +40,7 @@ const SearchScreen = () => {
                 placeholderTextColor={Colors.nearWhite}
                 round
                 onChangeText={handleSearch}
-                value='hi'
+                value={value}
                 onSubmitEditing={handleSubmit}
                 containerStyle={styles.searchBar}
                 inputContainerStyle={styles.input}
@@ -42,7 +50,13 @@ const SearchScreen = () => {
                 leftIconContainerStyle={{ marginLeft: EStyleSheet.value('8rem') }}
                 rightIconContainerStyle={{ marginRight: EStyleSheet.value('8rem') }}
             />
-            <FilterDrawer />
+            <FilterDrawer
+                handleFilter={(f, s) => handleFilter(f, s)}
+                handleFormat={() => handleFormat()}
+                handleGenre={() => handleGenre()}
+                handlePrice={() => handlePrice()}
+                handleSort={() => handleSort()} 
+            />
             {isLoading
                 ? <View style={styles.loadingContainer}>
                     <ActivityIndicator />
