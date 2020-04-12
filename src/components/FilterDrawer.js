@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Accordion from 'react-native-collapsible/Accordion';
@@ -13,29 +13,37 @@ import GenreFilters from './GenreFilters';
 
 const FilterDrawer = ({ handleFilter }) => {
     const [active, setActive] = useState([]);
+    const [clear, setClear] = useState(false);
     const [format, setFormat] = useState([]);
     const [genre, setGenre] = useState([]);
-    const [price, setPrice] = useState(1000);
+    const [price, setPrice] = useState(100);
     const [sort, setSort] = useState(0);
 
     const handleFormat = (f) => {
-        //console.log(`setting format: ${f}`);
         setFormat(f);
     };
 
     const handleGenre = (g) => {
-        //console.log(`setting genre: ${g}`);
         setGenre(g)
     };
 
     const handleSort = (i) => {
-        //console.log(`setting sort: ${i}`);
         setSort(i);
     };
 
     const handleApply = () => {
         handleFilter(format, genre, price, sort);
-    }
+        setActive([]);
+    };
+
+    const handleClear =() => {
+        setClear(true);
+        setPrice(100);
+    };
+
+    useEffect(() => {
+        handleApply();
+    }, [clear]);
 
     const renderHeader = () => {
         return (
@@ -62,6 +70,7 @@ const FilterDrawer = ({ handleFilter }) => {
                     ]}
                     onPress={(i) => handleSort(i)}
                     title={'Sort By'}
+                    clear={clear}
                 />
 
                 <FormatFilters
@@ -72,6 +81,7 @@ const FilterDrawer = ({ handleFilter }) => {
                     ]}
                     onPress={(i) => handleFormat(i)}
                     title={'Format'}
+                    clear={clear}
                 />
 
                 <View style={styles.contentTextContainer}>
@@ -109,12 +119,13 @@ const FilterDrawer = ({ handleFilter }) => {
                     ]}
                     onPress={(g) => handleGenre(g)}
                     title={'Genre'}
+                    clear={clear}
                 />
 
                 <View style={styles.buttonContainer}>
                     <RoundButton title='Apply' onPress={handleApply} />
                     <View style={{ height: EStyleSheet.value('20rem') }} />
-                    <RoundButton title='Clear' />
+                    <RoundButton title='Clear' onPress={handleClear} />
                 </View>
             </ScrollView>
         );
@@ -124,10 +135,13 @@ const FilterDrawer = ({ handleFilter }) => {
         <Accordion
             activeSections={active}
             containerStyle={styles.accordion}
-            sections={['1']}
+            sections={['0']}
             renderHeader={renderHeader}
             renderContent={renderContent}
-            onChange={activeSections => setActive(activeSections)}
+            onChange={activeSections => {
+                setActive(activeSections)
+                console.log(activeSections);
+            }}
         />
     );
 };

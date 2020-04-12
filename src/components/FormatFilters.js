@@ -5,7 +5,7 @@ import { CheckBox } from 'react-native-elements';
 
 import Colors from '../constants/Colors';
 
-const FormatFilters = ({ checkBoxes, onPress, title }) => {
+const FormatFilters = ({ checkBoxes, clear, onPress, title }) => {
     const [selected, setSelected] = useState([]);
 
     const onSelect = (item) => {
@@ -21,6 +21,10 @@ const FormatFilters = ({ checkBoxes, onPress, title }) => {
     useEffect(() => {
         onPress(selected);
     }, [selected]);
+
+    useEffect(() => {
+        setSelected([]);
+    }, [clear])
 
     return (
         <>

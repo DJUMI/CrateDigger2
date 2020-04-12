@@ -8,6 +8,8 @@ home
     handle case for empty home list
 search
     figure out why slider thumb is cut off
+    alert for applying/clearing filters
+    fix clear button
 dig
     restart swiper when last card reached
     maybe lower height on card image? need to test with actually images

@@ -132,7 +132,7 @@ export default (type, genre, format, price, query, sort) => {
 
     useEffect(() => {
         getQuery(type, genre, format, price, query, sort);
-    }, [genre, query]);
+    }, [genre, price, query]);
 
     return [products, isLoading];
 };

@@ -5,12 +5,16 @@ import { CheckBox } from 'react-native-elements';
 
 import Colors from '../constants/Colors';
 
-const SortFilters = ({ checkBoxes, onPress, title }) => {
+const SortFilters = ({ checkBoxes, clear, onPress, title }) => {
     const [checked, setChecked] = useState(0);
 
     useEffect(() => {
         onPress(checked);
     }, [checked]);
+
+    useEffect(() => {
+        setChecked(0);
+    }, [clear]);
 
     return (
         <>

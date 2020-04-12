@@ -32,6 +32,7 @@ const SearchScreen = () => {
         console.log(`setting format: ${format}`);
         console.log(`setting genre: ${genre}`);
         console.log(`setting price: ${price}`);
+        setPrice(price);
         console.log(`setting sort: ${sort}`);
     };
 

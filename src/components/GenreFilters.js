@@ -5,7 +5,7 @@ import { CheckBox } from 'react-native-elements';
 
 import Colors from '../constants/Colors';
 
-const GenreFilters = ({ checkBoxes, onPress, title }) => {
+const GenreFilters = ({ checkBoxes, clear,  onPress, title }) => {
     const [genres, setGenres] = useState([]);
     const [selected, setSelected] = useState([]);
 
@@ -25,6 +25,11 @@ const GenreFilters = ({ checkBoxes, onPress, title }) => {
     useEffect(() => {
         onPress(genres);
     }, [genres])
+
+    useEffect(() => {
+        setGenres([]);
+        setSelected([]);
+    }, [clear])
 
     
     return (
