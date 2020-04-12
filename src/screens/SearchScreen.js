@@ -8,6 +8,7 @@ import Colors from '../constants/Colors';
 import FilterDrawer from '../components/FilterDrawer';
 import SearchList from '../components/lists/SearchList';
 import useProducts from '../hooks/useProducts';
+import { getSupportedVideoFormats } from 'expo/build/AR';
 
 
 
@@ -20,6 +21,27 @@ const SearchScreen = () => {
     const [value, setValue] = useState('');
     const [products, isLoading] = useProducts('search', genre, format, price, query, sort);
 
+    const getFormat = (format) => {
+        const updatedFormat = [];
+        format.map((f) => {
+            updatedFormat.push({ format: { $regex: f, '$options': 'i' } });
+        });
+        return updatedFormat;
+    }
+
+    const getSort = (sort) => {
+        switch (sort) {
+            case 0:
+                return { sort: { listing_id: -1 } };
+            case 1:
+                return { sort: { price: -1 } };
+            case 2:
+                return { sort: { price: 1 } };
+            default:
+                return;
+        };
+    };
+
     const handleSearch = text => {
         setValue(text);
     };
@@ -30,10 +52,12 @@ const SearchScreen = () => {
 
     const handleFilter = (format, genre, price, sort) => {
         console.log(`setting format: ${format}`);
+        setFormat(getFormat(format));
         console.log(`setting genre: ${genre}`);
         console.log(`setting price: ${price}`);
         setPrice(price);
         console.log(`setting sort: ${sort}`);
+        setSort(getSort(sort));
     };
 
     return (

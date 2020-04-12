@@ -138,10 +138,7 @@ const FilterDrawer = ({ handleFilter }) => {
             sections={['0']}
             renderHeader={renderHeader}
             renderContent={renderContent}
-            onChange={activeSections => {
-                setActive(activeSections)
-                console.log(activeSections);
-            }}
+            onChange={activeSections => setActive(activeSections)}
         />
     );
 };

@@ -96,6 +96,7 @@ export default (type, genre, format, price, query, sort) => {
     };
 
     const fetchSearchListData = (genre, format, price, query, sort) => {
+        console.log(sort);
         console.log(`fetching search data query: ${query}`)
         const mongodb = Stitch.defaultAppClient.getServiceClient(
             RemoteMongoClient.factory,
@@ -111,13 +112,12 @@ export default (type, genre, format, price, query, sort) => {
                     { title: { $regex: query, '$options': 'i' } }]
                 },
                 { price: { $lte: price } },
-                //{ $or: [{ format: { $regex: format, '$options': 'i' } }] },
-                //{ $or: [{ genre: { $regex: genre, '$options': 'i' } }] },
+                { $or: format },
+                    //{ $or: [{ genre: { $regex: genre, '$options': 'i' } }] },
                 ]
             },
-                {
-                    sort: { price: -1 }
-                })
+                sort
+            )
             .asArray()
             .then(fetchedProducts => {
                 setProducts(fetchedProducts);
@@ -132,7 +132,7 @@ export default (type, genre, format, price, query, sort) => {
 
     useEffect(() => {
         getQuery(type, genre, format, price, query, sort);
-    }, [genre, price, query]);
+    }, [format, genre, price, query, sort]);
 
     return [products, isLoading];
 };
