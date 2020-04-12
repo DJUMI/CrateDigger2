@@ -9,14 +9,13 @@ const FormatFilters = ({ checkBoxes, onPress, title }) => {
     const [selected, setSelected] = useState([]);
 
     const onSelect = (item) => {
-        var updatedSelections = selected;
+        let updatedSelections = [...selected];
         if (!updatedSelections.includes(item.label)) {
             updatedSelections.push(item.label);
         } else {
             updatedSelections = selected.filter(i => !i.includes(item.label));
         }
         setSelected(updatedSelections);
-        console.log(updatedSelections);
     };
 
     return (

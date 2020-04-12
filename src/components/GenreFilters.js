@@ -10,17 +10,16 @@ const GenreFilters = ({ checkBoxes, onPress, title }) => {
     const [selected, setSelected] = useState([]);
 
     const onSelect = (item, index) => {
-        var updatedSelections = selected;
+        let updatedSelections = [...selected];
         updatedSelections[index] = !updatedSelections[index];
         setSelected(updatedSelections);
-        var updatedGenres = genres;
+        let updatedGenres = [...genres];
         if (!updatedGenres.includes(item.label)) {
             updatedGenres.push(item.label);
         } else {
             updatedGenres = genres.filter(i => !i.includes(item.label));
         }
         setGenres(updatedGenres);
-        console.log(updatedSelections);
     };
 
     return (
