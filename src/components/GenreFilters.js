@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { CheckBox } from 'react-native-elements';
@@ -9,7 +9,7 @@ const GenreFilters = ({ checkBoxes, onPress, title }) => {
     const [genres, setGenres] = useState([]);
     const [selected, setSelected] = useState([]);
 
-    const onSelect = (item, index) => {
+    const onSelect = async (item, index) => {
         let updatedSelections = [...selected];
         updatedSelections[index] = !updatedSelections[index];
         setSelected(updatedSelections);
@@ -22,6 +22,11 @@ const GenreFilters = ({ checkBoxes, onPress, title }) => {
         setGenres(updatedGenres);
     };
 
+    useEffect(() => {
+        onPress(genres);
+    }, [genres])
+
+    
     return (
         <>
             <View style={styles.title}>
@@ -39,7 +44,6 @@ const GenreFilters = ({ checkBoxes, onPress, title }) => {
                                 iconRight
                                 onPress={() => {
                                     onSelect(checkBox, index);
-                                    onPress(selected);
                                 }}
                                 right
                                 textStyle={styles.text}
@@ -61,7 +65,6 @@ const GenreFilters = ({ checkBoxes, onPress, title }) => {
                                 iconRight
                                 onPress={() => {
                                     onSelect(checkBox, index+3)
-                                    onPress(selected);
                                 }}
                                 right
                                 textStyle={styles.text}
@@ -83,7 +86,6 @@ const GenreFilters = ({ checkBoxes, onPress, title }) => {
                                 iconRight
                                 onPress={() => {
                                     onSelect(checkBox, index+6)
-                                    onPress(selected);
                                 }}
                                 right
                                 textStyle={styles.text}

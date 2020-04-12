@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { CheckBox } from 'react-native-elements';
@@ -7,6 +7,10 @@ import Colors from '../constants/Colors';
 
 const SortFilters = ({ checkBoxes, onPress, title }) => {
     const [checked, setChecked] = useState(0);
+
+    useEffect(() => {
+        onPress(checked);
+    }, [checked]);
 
     return (
         <>
@@ -24,7 +28,6 @@ const SortFilters = ({ checkBoxes, onPress, title }) => {
                             iconRight
                             onPress={() => {
                                 setChecked(index);
-                                onPress(index);
                             }}
                             right
                             textStyle={styles.text}

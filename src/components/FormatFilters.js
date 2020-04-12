@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { CheckBox } from 'react-native-elements';
@@ -18,6 +18,10 @@ const FormatFilters = ({ checkBoxes, onPress, title }) => {
         setSelected(updatedSelections);
     };
 
+    useEffect(() => {
+        onPress(selected);
+    }, [selected]);
+
     return (
         <>
             <View style={styles.title}>
@@ -34,7 +38,6 @@ const FormatFilters = ({ checkBoxes, onPress, title }) => {
                             iconRight
                             onPress={() => {
                                 onSelect(checkBox)
-                                onPress(selected);
                             }}
                             right
                             textStyle={styles.text}

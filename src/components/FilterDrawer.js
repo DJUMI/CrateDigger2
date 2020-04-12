@@ -6,7 +6,6 @@ import { Entypo, Ionicons } from '@expo/vector-icons';
 import { Slider } from 'react-native-elements';
 
 import Colors from '../constants/Colors';
-import CheckBoxGroup from './CheckBoxGroup';
 import RoundButton from './RoundButton';
 import SortFilters from './SortFilters';
 import FormatFilters from './FormatFilters';
@@ -15,29 +14,27 @@ import GenreFilters from './GenreFilters';
 const FilterDrawer = ({ handleFilter }) => {
     const [active, setActive] = useState([]);
     const [format, setFormat] = useState([]);
-    const [maxPrice, setMaxPrice] = useState(1000);
+    const [genre, setGenre] = useState([]);
+    const [price, setPrice] = useState(1000);
     const [sort, setSort] = useState(0);
 
     const handleFormat = (f) => {
-        console.log(`setting format: ${f}`);
+        //console.log(`setting format: ${f}`);
         setFormat(f);
     };
 
-    const handleGenre = () => {
-        console.log('setting genre');
-    };
-
-    const handlePrice = () => {
-        console.log('setting price');
+    const handleGenre = (g) => {
+        //console.log(`setting genre: ${g}`);
+        setGenre(g)
     };
 
     const handleSort = (i) => {
-        console.log(`setting sort: ${i}`);
+        //console.log(`setting sort: ${i}`);
         setSort(i);
     };
 
     const handleApply = () => {
-        handleFilter(format, sort);
+        handleFilter(format, genre, price, sort);
     }
 
     const renderHeader = () => {
@@ -79,9 +76,9 @@ const FilterDrawer = ({ handleFilter }) => {
 
                 <View style={styles.contentTextContainer}>
                     <Text style={styles.contentText}>Max Price</Text>
-                    {maxPrice >= 100
+                    {price >= 100
                         ? <Text style={styles.contentText}>100+</Text>
-                        : <Text style={styles.contentText}>{maxPrice}</Text>
+                        : <Text style={styles.contentText}>{price}</Text>
                     }
                 </View>
                 <View style={styles.slider}>
@@ -91,8 +88,8 @@ const FilterDrawer = ({ handleFilter }) => {
                         minimumTrackTintColor={Colors.seaGreen}
                         step={1}
                         thumbTintColor={Colors.seaGreen}
-                        value={maxPrice}
-                        onValueChange={value => { setMaxPrice(value) }}
+                        value={price}
+                        onValueChange={value => setPrice(value)}
                         thumbStyle={styles.thumb}
                         thumbTouchSize={{ width: EStyleSheet.value('40rem'), height: EStyleSheet.value('40rem') }}
                     />
@@ -110,35 +107,9 @@ const FilterDrawer = ({ handleFilter }) => {
                         { label: 'Disco' },
                         { label: 'Rock' }
                     ]}
-                    onPress={() => handleGenre()}
+                    onPress={(g) => handleGenre(g)}
                     title={'Genre'}
                 />
-
-                {/* <CheckBoxGroup
-                    checkBoxes={[
-                        { label: 'House', selected: false },
-                        { label: 'Techno', selected: false },
-                        { label: 'DnB', selected: false }
-                    ]}
-                    onPress={handleGenre}
-                    title={'Genre'}
-                />
-                <CheckBoxGroup
-                    checkBoxes={[
-                        { label: 'Acid', selected: false },
-                        { label: 'Hip-Hop', selected: false },
-                        { label: 'Electro', selected: false }
-                    ]}
-                    onPress={handleGenre}
-                />
-                <CheckBoxGroup
-                    checkBoxes={[
-                        { label: 'Deep House', selected: false },
-                        { label: 'Disco', selected: false },
-                        { label: 'Rock', selected: false }
-                    ]}
-                    onPress={handleGenre}
-                /> */}
 
                 <View style={styles.buttonContainer}>
                     <RoundButton title='Apply' onPress={handleApply} />

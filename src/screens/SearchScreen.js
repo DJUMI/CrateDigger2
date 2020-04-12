@@ -28,9 +28,11 @@ const SearchScreen = () => {
         setQuery(props.nativeEvent.text);
     };
 
-    const handleFilter = (format, sort) => {
-        console.log(format);
-        console.log(sort);
+    const handleFilter = (format, genre, price, sort) => {
+        console.log(`setting format: ${format}`);
+        console.log(`setting genre: ${genre}`);
+        console.log(`setting price: ${price}`);
+        console.log(`setting sort: ${sort}`);
     };
 
     return (
@@ -51,11 +53,7 @@ const SearchScreen = () => {
                 rightIconContainerStyle={{ marginRight: EStyleSheet.value('8rem') }}
             />
             <FilterDrawer
-                handleFilter={(f, s) => handleFilter(f, s)}
-                handleFormat={() => handleFormat()}
-                handleGenre={() => handleGenre()}
-                handlePrice={() => handlePrice()}
-                handleSort={() => handleSort()} 
+                handleFilter={(f, g, p, s) => handleFilter(f, g, p, s)}
             />
             {isLoading
                 ? <View style={styles.loadingContainer}>

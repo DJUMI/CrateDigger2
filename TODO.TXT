@@ -9,8 +9,6 @@ home
 search
     figure out why slider thumb is cut off
 dig
-    fix loading screen
-    add genre filters to dig screen
     restart swiper when last card reached
     maybe lower height on card image? need to test with actually images
     filter button should be rendered before swiper
