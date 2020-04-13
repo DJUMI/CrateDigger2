@@ -8,9 +8,6 @@ import Colors from '../constants/Colors';
 import FilterDrawer from '../components/FilterDrawer';
 import SearchList from '../components/lists/SearchList';
 import useProducts from '../hooks/useProducts';
-import { getSupportedVideoFormats } from 'expo/build/AR';
-
-
 
 const SearchScreen = () => {
     const [format, setFormat] = useState([]);
@@ -22,12 +19,28 @@ const SearchScreen = () => {
     const [products, isLoading] = useProducts('search', genre, format, price, query, sort);
 
     const getFormat = (format) => {
-        const updatedFormat = [];
-        format.map((f) => {
-            updatedFormat.push({ format: { $regex: f, '$options': 'i' } });
-        });
-        return updatedFormat;
-    }
+        let formatQuery = {};
+        if(format.length != 0) {
+            const updatedFormat = [];
+            format.map((f) => {
+                updatedFormat.push({ format: { $regex: f, '$options': 'i' } });
+            });
+            formatQuery = { $or: updatedFormat };
+        }
+        return formatQuery;
+    };
+
+    const getGenre = (genre) => {
+        let genreQuery = {};
+        if(genre.length != 0) {
+            const updatedGenre = [];
+            genre.map((g) => {
+                updatedGenre.push({ styles: { $regex: g, '$options': 'i' } });
+            });
+            genreQuery = { $or: updatedGenre };
+        }
+        return genreQuery;
+    };
 
     const getSort = (sort) => {
         switch (sort) {
@@ -47,13 +60,14 @@ const SearchScreen = () => {
     };
 
     const handleSubmit = (props) => {
-        setQuery(props.nativeEvent.text);
+        setSearch(props.nativeEvent.text);
     };
 
     const handleFilter = (format, genre, price, sort) => {
         console.log(`setting format: ${format}`);
         setFormat(getFormat(format));
         console.log(`setting genre: ${genre}`);
+        setGenre(getGenre(genre));
         console.log(`setting price: ${price}`);
         setPrice(price);
         console.log(`setting sort: ${sort}`);

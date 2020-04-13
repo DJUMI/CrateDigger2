@@ -112,8 +112,8 @@ export default (type, genre, format, price, query, sort) => {
                     { title: { $regex: query, '$options': 'i' } }]
                 },
                 { price: { $lte: price } },
-                { $or: format },
-                    //{ $or: [{ genre: { $regex: genre, '$options': 'i' } }] },
+                format,
+                genre
                 ]
             },
                 sort

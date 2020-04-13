@@ -109,9 +109,9 @@ const FilterDrawer = ({ handleFilter }) => {
                     checkBoxes={[
                         { label: 'House' },
                         { label: 'Techno' },
-                        { label: 'DnB' },
+                        { label: 'Drum N Bass' },
                         { label: 'Acid'},
-                        { label: 'Hip-Hop' },
+                        { label: 'Hip Hop' },
                         { label: 'Electro'},
                         { label: 'Deep House' },
                         { label: 'Disco' },
