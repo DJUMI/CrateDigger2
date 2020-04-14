@@ -1,8 +1,11 @@
 import csv
+import json
 import time
-import discogs_client # https://github.com/discogs/discogs_client (Node.js image/video collection possible)
+# https://github.com/discogs/discogs_client (Node.js image/video collection possible)
+import discogs_client
 
-d = discogs_client.Client('ExampleApplication/0.1', user_token = "YsLpfCxaLIMiCtRSzHyQfIjsnWoOQNJpzrJeWOLK")
+d = discogs_client.Client('ExampleApplication/0.1',
+                          user_token="YsLpfCxaLIMiCtRSzHyQfIjsnWoOQNJpzrJeWOLK")
 
 ########### API RESOURCE CHECK SCRATCH WORK ###########
 # release = d.release(249504)
@@ -13,85 +16,60 @@ d = discogs_client.Client('ExampleApplication/0.1', user_token = "YsLpfCxaLIMiCt
 # # print (video_data)
 #######################################################
 
-def convert(styles):
-
-    if not styles:
-        return "n/a"
-
-    str1 = ""
-
-    for x in styles:
-        str1 += x + " / "
-
-    str1 = str1[: -3]
-
-    return str1
-
 # open raw .csv data file
-with open('test_before_script.csv') as csv_file: 
-    csv_reader = csv.reader(csv_file, delimiter = ',')
-    line_count = 0
+with open('test.csv') as csv_file:
+    csv_reader = csv.DictReader(csv_file, ('listing_id', 'artist', 'title',
+                                           'label', 'catno', 'format', 'release_id', 'status', 'price'), 'extra')
+    line_count = 1
     image_error_count = 0
     video_error_count = 0
     write_error_count = 0
 
-    # create new csv file and write to it
-    with open('parsed_listings.csv', mode = 'w') as out_file:
-        out_writer = csv.writer(out_file, delimiter = ',', quotechar = '"', quoting = csv.QUOTE_MINIMAL)
-        out_writer.writerow(['listing_id', 'artist', 'title', 'label', 'styles', 'format', 'release_id', 'status', 'price', 'image_url', 'video_url'])
+    with open('parsed.json', 'w') as out_file:
+
+        #skip the headers
+        csv_reader.__next__()
 
         # iterate row by row
         for row in csv_reader:
+            
+            #sleep so we don't overwhelm api
+            time.sleep(1.5)
+            print(line_count)
 
-            # Clear column headers
-            if line_count == 0:
-                line_count = 1
-            else:
-                time.sleep(1.5) # abide by discogs pull request frequencies 60 / min
-                print(line_count)
-
-                #read from.csv file
-                listing_id = row[0]
-                artist = row[1]
-                title = row[2]
-                label = row[3]
-                format = row[5]
-                release_id = row[6]
-                status = row[7]
-                price = row[8]
-
-                # fetch from discogs API 
-                release = d.release(row[6])
-                styles = convert(release.styles)             
-                
-                # Error thrown if there is no image data in the API. Write out "n/a" instead
-                try:
-                    image_url = release.images[0].get("resource_url") # dictionary of image data
-                except:
-                    image_url = "n/a"
-                    print("IMAGE ERROR ON LINE " + str(line_count))
-                    image_error_count += 1
-                    pass
-                
-                # Error thrown if there is no video data in API. Write out "n/a" instead
-                try:
-                    video_url = release.videos[0].url
-                except:
-                    video_url = "n/a"
-                    print("VIDEO ERROR ON LINE " + str(line_count))
-                    video_error_count += 1
-                    pass
-                
-                # write row of data to .csv
-                try: 
-                    out_writer.writerow([listing_id, artist, title, label, styles, format, release_id, status, price, image_url, video_url])
-                    line_count += 1 # successful write
-                except UnicodeEncodeError: 
-                    print("WRITE ERROR ON LINE " + str(line_count))
-                    write_error_count += 1
-                    pass
+            dict_from_csv = row
+            # delete extra fields
+            del dict_from_csv['catno']
+            del dict_from_csv['extra']
+            # get release from discogs api
+            release = d.release(dict_from_csv['release_id'])
+            # get image_url
+            try:
+                image_url = release.images[0].get("resource_url")
+            except:
+                image_url = None
+                print("IMAGE ERROR ON LINE " + str(line_count))
+                image_error_count += 1
+            finally:
+                dict_from_csv['image_url'] = image_url
+            # get video_url
+            try:
+                video_url = release.videos[0].url
+            except:
+                video_url = None
+                print("VIDEO ERROR ON LINE " + str(line_count))
+                video_error_count += 1
+            finally:
+                dict_from_csv['video_url'] = video_url
+            # get styles
+            dict_from_csv['genres'] = release.genres
+            
+            #convert to json
+            json_from_csv = json.dumps(dict_from_csv)
+            out_file.write(json_from_csv)
+            out_file.write('\n')
+            line_count += 1
 
 # Caught error summary
 print("Image Errors: " + str(image_error_count))
 print("Video Errors: " + str(video_error_count))
-print("Video Errors: " + str(write_error_count))

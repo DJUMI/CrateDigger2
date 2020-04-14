@@ -22,3 +22,6 @@ scaling
     main tab bar icons are cutoff
     navigation header back button
     dig card is a little wonky on ipad
+db
+    pull jiggy inventory
+    delete items that aren't for sale
