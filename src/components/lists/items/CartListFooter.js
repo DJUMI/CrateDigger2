@@ -3,8 +3,8 @@ import { Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Colors from '../../../constants/Colors';
-import SquareButton from '../../SquareButton';
 import { Context } from '../../../context/cartContext';
+import TwoSquareButtons from '../../buttons/TwoSquareButtons';
 
 const CartListFooter = () => {
     const { state, clearCart } = useContext(Context);
@@ -16,10 +16,12 @@ const CartListFooter = () => {
                 <Text style={styles.text}>${parseFloat(Math.round(state.cartTotal * 100) / 100).toFixed(2)}</Text> 
             </View>
 
-            <View style={styles.buttonContainer}>
-                <SquareButton title='Check out with Discogs' onPress={() => {}} /> 
-                <SquareButton title='Clear Cart' onPress={clearCart} />
-            </View>
+            <TwoSquareButtons 
+                onPress1={clearCart} 
+                onPress2={() => {}} 
+                title1='Clear Cart'
+                title2='Check Out'
+            />
         </View>
     );
 };
@@ -38,12 +40,5 @@ const styles = EStyleSheet.create({
         fontSize: '15rem',
         color: Colors.nearWhite,
         paddingRight: '10rem'
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        paddingBottom: '55rem',
-        paddingTop: '10rem',
-        paddingHorizontal: '30rem'
     }
 });

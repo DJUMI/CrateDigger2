@@ -3,7 +3,7 @@ import { Image, Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Colors from '../../../constants/Colors';
-import RoundButton from '../../RoundButton';
+import RoundButton from '../../buttons/RoundButton';
 
 const DigCard = (item, navigation, addToCart) => {
     return (

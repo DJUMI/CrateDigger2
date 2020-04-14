@@ -2,9 +2,9 @@ import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-import Colors from '../constants/Colors';
+import Colors from '../../constants/Colors';
 
-const roundButton = ({ disabled, onPress, title }) => {
+const SquareButton = ({ disabled, onPress, title }) => {
     return (
         disabled
         ? <TouchableOpacity style={styles.buttonDisabled} onPress={onPress}>
@@ -17,16 +17,16 @@ const roundButton = ({ disabled, onPress, title }) => {
     );
 };
 
-export default roundButton;
+export default SquareButton;
 
 const styles = EStyleSheet.create({
     button: {
         backgroundColor: Colors.seaGreen,
-        height: '45rem',
-        width: '140rem',
+        height: '50rem',
+        width: '200rem',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: '50rem'
+        borderRadius: '5rem'
     },
     buttonText: {
         fontSize: '15rem',
@@ -37,11 +37,11 @@ const styles = EStyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
         backgroundColor: Colors.darkBlue,
-        height: '45rem',
-        width: '140rem',
+        height: '50rem%',
+        width: '200rem%',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: '50rem'
+        borderRadius: '5rem'
     },
     buttonDisabledText: {
         fontSize: '15rem',

@@ -7,7 +7,7 @@ import { SearchBar } from 'react-native-elements';
 import Colors from '../constants/Colors';
 import FilterDrawer from '../components/FilterDrawer';
 import SearchList from '../components/lists/SearchList';
-import useProducts from '../hooks/useProducts';
+import useSearchProducts from '../hooks/useSearchProducts';
 
 const SearchScreen = () => {
     const [format, setFormat] = useState([]);
@@ -16,7 +16,7 @@ const SearchScreen = () => {
     const [query, setQuery] = useState('');
     const [sort, setSort] = useState('');
     const [value, setValue] = useState('');
-    const [products, isLoading] = useProducts('search', genre, format, price, query, sort);
+    const [products, isLoading] = useSearchProducts(genre, format, price, query, sort);
 
     const getFormat = (format) => {
         let formatQuery = {};
@@ -60,18 +60,15 @@ const SearchScreen = () => {
     };
 
     const handleSubmit = (props) => {
-        setSearch(props.nativeEvent.text);
+        setQuery(props.nativeEvent.text);
     };
 
-    const handleFilter = (format, genre, price, sort) => {
-        console.log(`setting format: ${format}`);
-        setFormat(getFormat(format));
-        console.log(`setting genre: ${genre}`);
-        setGenre(getGenre(genre));
-        console.log(`setting price: ${price}`);
-        setPrice(price);
-        console.log(`setting sort: ${sort}`);
-        setSort(getSort(sort));
+    const handleFilter = (f, g, p, s) => {
+        console.log(`from search screen f: ${f}, g: ${g}, p: ${p}, s: ${s}`);
+        setFormat(getFormat(f));
+        setGenre(getGenre(g));
+        setPrice(p);
+        setSort(getSort(s));
     };
 
     return (
@@ -93,6 +90,7 @@ const SearchScreen = () => {
             />
             <FilterDrawer
                 handleFilter={(f, g, p, s) => handleFilter(f, g, p, s)}
+                numResults={products.length.toLocaleString()}
             />
             {isLoading
                 ? <View style={styles.loadingContainer}>

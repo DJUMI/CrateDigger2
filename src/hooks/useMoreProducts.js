@@ -1,25 +1,23 @@
 import { useState, useEffect } from "react";
 import { Stitch, RemoteMongoClient } from 'mongodb-stitch-react-native-sdk';
 
-export default (type, genre) => {
+export default (type, search, id) => {
     const [isLoading, setIsLoading] = useState(true);
     const [products, setProducts] = useState([]);
 
-    const getQuery = (type, genre) => {
+    const getQuery = (type, search, id) => {
         switch (type) {
-            case 'new':
-                fetchHomeListData({ status: "For Sale" });
+            case 'artist':
+                fetchData({ $and: [{ artist: search }, { release_id: { $ne: id } }] });
                 return;
-            case 'genre':
-                fetchHomeListData({ styles: { $regex: genre, '$options': 'i' } });
-                return;
+            case 'label':
+                fetchData({ $and: [{ label: search }, { release_id: { $ne: id } }] });
             default:
                 return;
-        }
-    };
+        };
+    }
 
-    const fetchHomeListData = (query) => {
-        console.log(`fetching home data: ${JSON.stringify(query)}`)
+    const fetchData = (query) => {
         const mongodb = Stitch.defaultAppClient.getServiceClient(
             RemoteMongoClient.factory,
             'mongodb-atlas'
@@ -27,8 +25,7 @@ export default (type, genre) => {
         mongodb
             .db('shop')
             .collection('products')
-            .find(
-                query,
+            .find(query,
                 {
                     projection:
                     {
@@ -54,7 +51,7 @@ export default (type, genre) => {
     };
 
     useEffect(() => {
-        getQuery(type, genre);
+        getQuery(type, search, id)
     }, []);
 
     return [products, isLoading];

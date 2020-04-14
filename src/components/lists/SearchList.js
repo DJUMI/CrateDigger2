@@ -13,7 +13,7 @@ renderEmpty = () => {
             <Text style={styles.emptyText}>Sorry there are no items that match your search.</Text>
         </View>
     );
-}
+};
 
 const SearchList = ({ data }) => {
     const [numResultsShown, setNumResultsShown] = useState(20);

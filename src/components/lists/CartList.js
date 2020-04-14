@@ -37,7 +37,9 @@ export default CartList;
 const styles = EStyleSheet.create({
     emptyContainer: {
         alignContent: 'center',
-        paddingTop: '40rem'
+        paddingVertical: '25rem',
+        borderBottomWidth: 1,
+        borderBottomColor: Colors.nearWhite
     },
     emptyText: {
         fontSize: '15rem',

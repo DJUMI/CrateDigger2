@@ -8,15 +8,15 @@ import ActionSheet from 'react-native-actionsheet';
 import Colors from '../constants/Colors';
 import Genres from '../constants/Genres';
 import DigCard from '../components/lists/items/DigCard';
-import SquareButton from '../components/SquareButton';
+import SquareButton from '../components/buttons/SquareButton';
 import { Context as CartContext } from '../context/cartContext';
-import useProducts from '../hooks/useProducts';
+import useDigProducts from '../hooks/useDigProducts';
 
 const DigScreen = ({ navigation }) => {
     const { addToCart } = useContext(CartContext);
     const [genre, setGenre] = useState('');
     const [refreshing, setRefreshing]  = useState(false);
-    const [products, isLoading] = useProducts('dig', genre);
+    const [products, isLoading] = useDigProducts(genre);
  
     const showActionSheet = () => {
         this.ActionSheet.show();

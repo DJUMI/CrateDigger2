@@ -6,12 +6,12 @@ import { Entypo, Ionicons } from '@expo/vector-icons';
 import { Slider } from 'react-native-elements';
 
 import Colors from '../constants/Colors';
-import RoundButton from './RoundButton';
+import RoundButton from './buttons/RoundButton';
 import SortFilters from './SortFilters';
 import FormatFilters from './FormatFilters';
 import GenreFilters from './GenreFilters';
 
-const FilterDrawer = ({ handleFilter }) => {
+const FilterDrawer = ({ handleFilter, numResults }) => {
     const [active, setActive] = useState([]);
     const [clear, setClear] = useState(false);
     const [format, setFormat] = useState([]);
@@ -27,33 +27,39 @@ const FilterDrawer = ({ handleFilter }) => {
         setGenre(g)
     };
 
-    const handleSort = (i) => {
-        setSort(i);
+    const handleSort = (s) => {
+        setSort(s);
     };
 
     const handleApply = () => {
+        console.log('applying')
         handleFilter(format, genre, price, sort);
         setActive([]);
     };
 
-    const handleClear =() => {
-        setClear(true);
+    const handleClear = async () => {
+        console.log('clearing')
+        setClear(!clear);
         setPrice(100);
     };
 
     useEffect(() => {
-        handleApply();
-    }, [clear]);
+        console.log(`from FilterDrawer f: ${format}, g: ${genre}, p: ${price}, s: ${sort}`);
+    }, [format, genre, price, sort]);
+
+    useEffect(() => {
+        handleApply()
+    }, []);
 
     const renderHeader = () => {
         return (
             active[0] == 0
                 ? <View style={styles.header}>
-                    <Text style={styles.headerText}>3,000 Results</Text>
+                    <Text style={styles.headerText}>{numResults} Results</Text>
                     <Entypo size={EStyleSheet.value('30rem')} name='chevron-thin-up' color={Colors.nearWhite} />
                 </View>
                 : <View style={styles.header}>
-                    <Text style={styles.headerText}>3,000 Results</Text>
+                    <Text style={styles.headerText}>{numResults} Results</Text>
                     <Ionicons size={EStyleSheet.value('30rem')} style={{ marginRight: EStyleSheet.value('5rem') }} name='md-reorder' color={Colors.nearWhite} />
                 </View>
         );
@@ -192,7 +198,6 @@ const styles = EStyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingTop: '25rem',
-        paddingBottom: '15rem',
-        marginBottom: 500
+        paddingBottom: '15rem'
     }
 });

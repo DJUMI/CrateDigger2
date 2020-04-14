@@ -3,8 +3,8 @@ import { Image, Linking, ScrollView, Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Colors from '../constants/Colors';
-import HomeList from '../components/lists/HomeList';
-import RoundButton from '../components/RoundButton';
+import MoreList from '../components/lists/MoreList';
+import RoundButton from '../components/buttons/RoundButton';
 import { Context as CartContext } from '../context/cartContext';
 import useProduct from '../hooks/useProduct';
 
@@ -37,15 +37,17 @@ const DetailsScreen = ({ route }) => {
                 </View>
 
                 <View style={styles.buttonContainer}>
-                    <RoundButton title='+ Add to Cart' onPress={() => addToCart(product)} />
+                    <RoundButton 
+                        title='+ Add to Cart' 
+                        onPress={() => {addToCart(product)}} />
                     {product.video_url
                         ? <RoundButton title='Listen' onPress={() => { Linking.openURL(product.video_url) }} />
                         : <RoundButton disabled title='Listen' onPress={() => { }} />
                     }
                 </View>
 
-                <HomeList title="What's New" />
-                <HomeList title="What's New" />
+                <MoreList title='More from this Artist' type='artist' search={product.artist} id={product.release_id} />
+                <MoreList title='More from this Label' type='label' search={product.label} id={product.release_id} />
             </ScrollView>
     );
 };

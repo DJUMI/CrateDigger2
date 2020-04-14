@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import { Alert, AsyncStorage } from 'react-native';
 
 import createDataContext from './createDataContext';
 
@@ -9,6 +9,7 @@ const cartReducer = (state, action) => {
         case 'add_to_cart':
             const updatedItems = [...state.cart, action.payload];
             const updatedTotal = state.cartTotal + action.payload.price;
+            Alert.alert('Added!');
             return { cart: updatedItems, cartTotal:  updatedTotal }
         case 'clear_cart':
             return { cart: [], cartTotal: 0 };
