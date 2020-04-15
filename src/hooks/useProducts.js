@@ -8,7 +8,7 @@ export default (type, genre) => {
     const getQuery = (type, genre) => {
         switch (type) {
             case 'new':
-                fetchHomeListData({ status: "For Sale" });
+                fetchHomeListData({});
                 return;
             case 'genre':
                 fetchHomeListData({ styles: { $regex: genre, '$options': 'i' } });

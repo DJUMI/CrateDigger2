@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19003,
-  "packagerPid": 31093,
-  "expoServerNgrokUrl": "https://fe-g93.djumi.cratedigger2.exp.direct",
-  "packagerNgrokUrl": "https://packager.fe-g93.djumi.cratedigger2.exp.direct",
-  "ngrokPid": 31104
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }

@@ -7,9 +7,11 @@ navigation
 home
     handle case for empty home list
 search
+    !load more results
     figure out why slider thumb is cut off
     alert for applying/clearing filters
 dig
+    going to none twice in genre filters breaks that ish
     restart swiper when last card reached
     maybe lower height on card image? need to test with actually images
     filter button should be rendered before swiper
@@ -23,5 +25,5 @@ scaling
     navigation header back button
     dig card is a little wonky on ipad
 db
-    pull jiggy inventory
-    delete items that aren't for sale
+    !pull jiggy inventory
+    !delete items that aren't for sale

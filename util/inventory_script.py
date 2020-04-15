@@ -62,7 +62,7 @@ with open('test.csv') as csv_file:
             finally:
                 dict_from_csv['video_url'] = video_url
             # get styles
-            dict_from_csv['genres'] = release.genres
+            dict_from_csv['styles'] = release.styles
             
             #convert to json
             json_from_csv = json.dumps(dict_from_csv)

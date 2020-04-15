@@ -16,13 +16,9 @@ export default (genre) => {
             .collection('products')
             .aggregate([{
                 $match: {
-                    $and: [{
-                        status: "For Sale"
-                    }, {
-                        styles: {
-                            $regex: genre, '$options': 'i'
-                        }
-                    }]
+                    styles: {
+                        $regex: genre, '$options': 'i'
+                    }
                 }
             }, {
                 $sample: {
