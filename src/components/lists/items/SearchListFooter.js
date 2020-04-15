@@ -4,10 +4,10 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 import SquareButton from '../../buttons/SquareButton';
 
-const SearchListFooter = () => {
+const SearchListFooter = (handleLoadMore) => {
     return (
         <View style={styles.buttonContainer}>
-            <SquareButton title='Load more results' onPress={() => { }} />
+            <SquareButton title='Load more results' onPress={handleLoadMore} />
         </View>
     );
 };

@@ -6,7 +6,6 @@ export default (genre) => {
     const [products, setProducts] = useState([]);
 
     const fetchDigData = (genre) => {
-        console.log('fetching dig data')
         const mongodb = Stitch.defaultAppClient.getServiceClient(
             RemoteMongoClient.factory,
             'mongodb-atlas'

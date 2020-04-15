@@ -7,7 +7,6 @@ navigation
 home
     handle case for empty home list
 search
-    !load more results
     figure out why slider thumb is cut off
     alert for applying/clearing filters
 dig
@@ -19,6 +18,7 @@ cart
     add are you sure modal for clearing cart
     update swipeable to use effects
     add cart to async storage
+details
    
 scaling
     main tab bar icons are cutoff

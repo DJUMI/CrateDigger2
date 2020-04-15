@@ -32,19 +32,16 @@ const FilterDrawer = ({ handleFilter, numResults }) => {
     };
 
     const handleApply = () => {
-        console.log('applying')
         handleFilter(format, genre, price, sort);
         setActive([]);
     };
 
     const handleClear = async () => {
-        console.log('clearing')
         setClear(!clear);
         setPrice(100);
     };
 
     useEffect(() => {
-        console.log(`from FilterDrawer f: ${format}, g: ${genre}, p: ${price}, s: ${sort}`);
     }, [format, genre, price, sort]);
 
     useEffect(() => {

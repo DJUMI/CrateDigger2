@@ -19,12 +19,16 @@ const SearchList = ({ data }) => {
     const [numResultsShown, setNumResultsShown] = useState(20);
     const navigation = useNavigation();
 
+    const handleLoadMore = () => {
+        setNumResultsShown(numResultsShown + 20);
+    }
+
     return (
         <FlatList
             data={data.slice(0, numResultsShown)}
             renderItem={(item) => SearchListItem(item, navigation)}
             ListEmptyComponent={renderEmpty}
-            ListFooterComponent={SearchListFooter}
+            ListFooterComponent={() => SearchListFooter(handleLoadMore)}
             showsVerticalScrollIndicator={false}
             keyExtractor={item => item._id.toString()}
         />

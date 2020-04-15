@@ -64,7 +64,6 @@ const SearchScreen = () => {
     };
 
     const handleFilter = (f, g, p, s) => {
-        console.log(`from search screen f: ${f}, g: ${g}, p: ${p}, s: ${s}`);
         setFormat(getFormat(f));
         setGenre(getGenre(g));
         setPrice(p);

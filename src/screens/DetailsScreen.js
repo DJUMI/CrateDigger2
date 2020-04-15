@@ -12,7 +12,7 @@ const DetailsScreen = ({ route }) => {
     const { prodId } = route.params;
     const [product, isLoading] = useProduct(prodId);
     const { addToCart } = useContext(CartContext);
-
+    
     return (
         isLoading
             ? <View style={styles.loadingContainer}>
@@ -25,7 +25,12 @@ const DetailsScreen = ({ route }) => {
                         <Text style={styles.infoText}>{product.label}</Text>
                         <Text style={styles.infoText}>{product.format}</Text>
                         <Text style={styles.infoText}>${parseFloat(Math.round(product.price * 100) / 100).toFixed(2)}</Text>
-                        <Text style={styles.infoText}>{product.styles}</Text>
+                        <Text style={styles.infoText}>
+                            {product.styles
+                                ? product.styles.join(', ')
+                                : product.styles
+                            }
+                        </Text>
                     </View>
                     <View style={styles.imageContainer}>
                         {product.image_url

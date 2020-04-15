@@ -26,12 +26,21 @@ const DigScreen = ({ navigation }) => {
         setRefreshing(false);
     }, [products]);
 
+    const renderHeader = () => {
+        if (genre) {
+            if (genre === 'hop') {
+                return <Text style={styles.header}>Hip-Hop</Text>
+            } else {
+                return <Text style={styles.header}>{genre}</Text>
+            }
+        } else {
+            return <Text style={styles.header}>All</Text>
+        }
+    };
+
     return (
         <SafeAreaView style={styles.container}>
-            {genre
-                ? <Text style={styles.header}>{genre}</Text>
-                : <Text style={styles.header}>All</Text>
-            }
+            {renderHeader()}
             <View style={styles.cardContainer}>
                 {isLoading || refreshing
                     ? <View style={styles.loadingContainer}>
@@ -56,13 +65,15 @@ const DigScreen = ({ navigation }) => {
                     destructiveButtonIndex={9}
                     style={styles.actionSheet}
                     onPress={async (index) => {
-                        if (index == 9) {
-                            console.log('refreshing')
+                        if (index == 6) {
+                            setRefreshing(true);
+                            setGenre('hop');
+                        }
+                        else if (index == 9) {
                             setRefreshing(true);
                             setGenre('');
                         }
                         else if (index != 10) {
-                            console.log('refreshing')
                             setRefreshing(true);
                             setGenre(Genres[index]);
                         }

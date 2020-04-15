@@ -7,7 +7,6 @@ export default (genre, format, price, query, sort) => {
 
     const fetchSearchListData = (genre, format, price, query, sort) => {
         setIsLoading(true);
-        console.log(`fetching search data. g: ${JSON.stringify(genre)}, f: ${JSON.stringify(format)}, p: ${price}, q: ${query}, s: ${JSON.stringify(sort)}`)
         const mongodb = Stitch.defaultAppClient.getServiceClient(
             RemoteMongoClient.factory,
             'mongodb-atlas'

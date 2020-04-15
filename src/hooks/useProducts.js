@@ -10,6 +10,9 @@ export default (type, genre) => {
             case 'new':
                 fetchHomeListData({});
                 return;
+            case 'staff picks':
+                fetchHomeListData({ staff_pick: true });
+                return;
             case 'genre':
                 fetchHomeListData({ styles: { $regex: genre, '$options': 'i' } });
                 return;
@@ -19,7 +22,6 @@ export default (type, genre) => {
     };
 
     const fetchHomeListData = (query) => {
-        console.log(`fetching home data: ${JSON.stringify(query)}`)
         const mongodb = Stitch.defaultAppClient.getServiceClient(
             RemoteMongoClient.factory,
             'mongodb-atlas'
@@ -39,7 +41,7 @@ export default (type, genre) => {
                 },
                 {
                     sort: { listing_id: -1 },
-                    limit: 20
+                    limit: 50
                 })
             .asArray()
             .then(fetchedProducts => {
