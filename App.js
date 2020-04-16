@@ -8,11 +8,13 @@ import * as Font from 'expo-font';
 
 import MainTabNavigator from './src/navigation/MainTabNavigator';
 import { Provider as CartProvider } from './src/context/cartContext';
+import UserContext from './src/context/userContext';
 
 export default () => {
   let entireScreenWidth = useWindowDimensions().width;
   EStyleSheet.build({ $rem: entireScreenWidth / 380 });
   const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState('no user');
 
   const _loadClient = () => {
     Stitch.initializeDefaultAppClient('crate-digger-stitch-adpqh')
@@ -20,6 +22,7 @@ export default () => {
         client.auth
           .loginWithCredential(new AnonymousCredential())
           .then(user => {
+            setUser(user.id);
             console.log(`Successfully logged in as user ${user.id}`);
           })
           .catch(err => {
@@ -67,9 +70,11 @@ export default () => {
     );
   } else {
     return (
-      <CartProvider>
-        <MainTabNavigator />
-      </CartProvider>
+      <UserContext.Provider value={user}>
+        <CartProvider>
+          <MainTabNavigator />
+        </CartProvider>
+      </UserContext.Provider>
     );
   }
 };
