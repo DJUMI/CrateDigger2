@@ -17,7 +17,7 @@ d = discogs_client.Client('ExampleApplication/0.1',
 #######################################################
 
 # open raw .csv data file
-with open('test.csv') as csv_file:
+with open('inventory.csv') as csv_file:
     csv_reader = csv.DictReader(csv_file, ('listing_id', 'artist', 'title',
                                            'label', 'catno', 'format', 'release_id', 'status', 'price'), 'extra')
     line_count = 1
@@ -34,7 +34,7 @@ with open('test.csv') as csv_file:
         for row in csv_reader:
             
             #sleep so we don't overwhelm api
-            time.sleep(1.5)
+            time.sleep(1.2)
             print(line_count)
 
             dict_from_csv = row
