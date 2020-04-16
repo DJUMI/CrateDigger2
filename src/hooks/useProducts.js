@@ -41,7 +41,7 @@ export default (type, genre) => {
                 },
                 {
                     sort: { listing_id: -1 },
-                    limit: 50
+                    limit: 25
                 })
             .asArray()
             .then(fetchedProducts => {

@@ -4,9 +4,11 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Colors from '../../../constants/Colors';
 import { Context } from '../../../context/cartContext';
+import UserContext from '../../../context/userContext';
 import TwoSquareButtons from '../../buttons/TwoSquareButtons';
 
 const CartListFooter = () => {
+    const user = useContext(UserContext);
     const { state, clearCart } = useContext(Context);
 
     return (
@@ -17,7 +19,7 @@ const CartListFooter = () => {
             </View>
 
             <TwoSquareButtons 
-                onPress1={clearCart} 
+                onPress1={() => clearCart(user)} 
                 onPress2={() => {}} 
                 title1='Clear Cart'
                 title2='Check Out'

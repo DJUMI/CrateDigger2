@@ -13,7 +13,7 @@ export default (prodId) => {
         mongodb
             .db('shop')
             .collection('products')
-            .findOne({ listing_id: prodId}, { sort: { listing_id: -1 }, limit: 20 })
+            .findOne({ listing_id: prodId }, { sort: { listing_id: -1 }, limit: 20 })
             .then(fetchedProduct => {
                 setProduct(fetchedProduct);
             })

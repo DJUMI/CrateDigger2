@@ -6,15 +6,17 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import Colors from '../constants/Colors';
 import HomeList from '../components/lists/HomeList';
 import { Context as CartContext } from '../context/cartContext';
+import UserContext from '../context/userContext';
 
 const HomeScreen = () => {
     const { loadCart } = useContext(CartContext);
+    const user = useContext(UserContext);
 
     useEffect(() => {
         if (loadCart) {
-            loadCart();
+            loadCart(user);
         }
-    }, [loadCart]);
+    }, []);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -24,7 +26,7 @@ const HomeScreen = () => {
                         <Image source={require("../../assets/images/logo.png")} style={styles.image} />
                     </View>
                     <HomeList title="What's New" type="new" />
-                    <HomeList title="Staff Picks" type="staff picks" />
+                    {/* <HomeList title="Staff Picks" type="staff picks" /> */}
                     <HomeList title="New House" type="genre" genre="house" />
                     <HomeList title="New Techno" type="genre" genre="techno" />
                     <HomeList title="New Drum N Bass" type="genre" genre="drum n bass" />

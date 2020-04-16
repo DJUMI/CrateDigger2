@@ -18,6 +18,8 @@ cart
     add are you sure modal for clearing cart
     update swipeable to use effects
     add cart to async storage
+    loading for clear
+    loading for delete
 details
    
 scaling

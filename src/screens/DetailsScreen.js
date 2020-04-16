@@ -6,12 +6,15 @@ import Colors from '../constants/Colors';
 import MoreList from '../components/lists/MoreList';
 import RoundButton from '../components/buttons/RoundButton';
 import { Context as CartContext } from '../context/cartContext';
+import UserContext from '../context/userContext';
 import useProduct from '../hooks/useProduct';
 
 const DetailsScreen = ({ route }) => {
     const { prodId } = route.params;
     const [product, isLoading] = useProduct(prodId);
     const { addToCart } = useContext(CartContext);
+    const user = useContext(UserContext);
+    
     
     return (
         isLoading
@@ -44,7 +47,7 @@ const DetailsScreen = ({ route }) => {
                 <View style={styles.buttonContainer}>
                     <RoundButton 
                         title='+ Add to Cart' 
-                        onPress={() => {addToCart(product)}} />
+                        onPress={() => {addToCart(user, product)}} />
                     {product.video_url
                         ? <RoundButton title='Listen' onPress={() => { Linking.openURL(product.video_url) }} />
                         : <RoundButton disabled title='Listen' onPress={() => { }} />

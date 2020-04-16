@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { FlatList, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -11,12 +11,13 @@ import { Context as CartContext } from '../../context/cartContext';
 renderCartEmpty = () => {
     return (
         <View style={styles.emptyContainer}>
-            <Text style={styles.emptyText}>Add items to your cart to check out with Discogs</Text>
+            <Text style={styles.emptyText}>So empty. Start digging!</Text>
         </View>
     );
 }
 
 const CartList = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const { state, removeFromCart } = useContext(CartContext);
     const navigation = useNavigation();
 
