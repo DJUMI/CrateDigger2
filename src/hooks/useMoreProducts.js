@@ -12,6 +12,7 @@ export default (type, search, id) => {
                 return;
             case 'label':
                 fetchData({ $and: [{ label: search }, { release_id: { $ne: id } }] });
+                return;
             default:
                 return;
         };
