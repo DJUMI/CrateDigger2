@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "cratedigger2",
-    "slug": "cratedigger2",
+    "name": "Crate Digger",
+    "slug": "CrateDigger",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/images/logo.png",
     "splash": {
@@ -18,11 +18,13 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["assets/*"],
     "ios": {
+      "bundleIdentifier": "com.jiggyjamz.cratedigger",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.jiggyjamz.cratedigger"
     }
   }
 }

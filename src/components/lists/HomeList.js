@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -6,9 +6,11 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import Colors from '../../constants/Colors';
 import HomeListItem from './items/HomeListItem';
 import useProducts from '../../hooks/useProducts';
+import UserContext from '../../context/userContext';
 
 const HomeList = ({ title, type, genre }) => {
-    const [products, isLoading] = useProducts(type, genre);
+    const user = useContext(UserContext);
+    const [products, isLoading] = useProducts(type, genre, user);
     const navigation = useNavigation();
 
     return (

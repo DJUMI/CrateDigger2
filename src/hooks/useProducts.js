@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Stitch, RemoteMongoClient } from 'mongodb-stitch-react-native-sdk';
 
-export default (type, genre) => {
+export default (type, genre, user) => {
     const [isLoading, setIsLoading] = useState(true);
     const [products, setProducts] = useState([]);
 
     const getQuery = (type, genre) => {
+        console.log('hi')
         switch (type) {
             case 'new':
                 fetchHomeListData({});
@@ -58,7 +59,7 @@ export default (type, genre) => {
 
     useEffect(() => {
         getQuery(type, genre);
-    }, []);
+    }, [user]);
 
     return [products, isLoading];
 };

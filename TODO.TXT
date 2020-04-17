@@ -11,7 +11,7 @@ search
     alert for applying/clearing filters
 dig
     going to none twice in genre filters breaks that ish
-    restart swiper when last card reached
+    restart swiper when last card reached or handle empty
     maybe lower height on card image? need to test with actually images
     filter button should be rendered before swiper
 cart
