@@ -124,7 +124,8 @@ const styles = EStyleSheet.create({
     row: {
         flexDirection: 'row',
         paddingVertical: '10rem',
-        marginRight: '15rem'
+        marginRight: '15rem',
+        marginLeft: '10rem'
     },
     checkBox: {
         flex: 1,
@@ -134,7 +135,7 @@ const styles = EStyleSheet.create({
     },
     text: {
         color: Colors.nearWhite,
-        fontSize: '15rem',
+        fontSize: '14rem',
         fontWeight: 'normal',
         marginRight: '10rem'
     }

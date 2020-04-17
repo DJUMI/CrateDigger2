@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Text, View } from 'react-native';
+import { Alert, Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Colors from '../../../constants/Colors';
@@ -18,12 +18,28 @@ const CartListFooter = () => {
                 <Text style={styles.text}>${parseFloat(Math.round(state.cartTotal * 100) / 100).toFixed(2)}</Text>
             </View>
 
-            <View style={styles.buttonContainer}>
-                <SquareButton
-                    onPress={() => clearCart(user)}
-                    title='Clear Wishlist'
-                />
-            </View>
+            {state.cart.length
+                ? <View style={styles.buttonContainer}>
+                    <SquareButton
+                        onPress={() => {
+                            Alert.alert(
+                                'Are you sure you want to clear your wishlist?',
+                                '',
+                                [
+                                    {
+                                        text: 'Cancel',
+                                        style: 'cancel',
+                                    },
+                                    { text: 'OK', onPress: () => clearCart(user) },
+                                ]
+                            )
+
+                        }}
+                        title='Clear Wishlist'
+                    />
+                </View>
+                : null
+                }
         </View>
     );
 };

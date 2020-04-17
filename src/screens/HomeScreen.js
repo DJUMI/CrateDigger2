@@ -34,6 +34,8 @@ const HomeScreen = () => {
                     <HomeList title="New Hip-Hop" type="genre" genre="hop" />
                     <HomeList title="New Electro" type="genre" genre="electro" />
                     <HomeList title="New Deep House" type="genre" genre="deep house" />
+                    <HomeList title="New Downtempo" type="genre" genre="downtempo" />
+                    <HomeList title="New Disco" type="genre" genre="disco" />
                 </ScrollView>
             </View>
         </SafeAreaView>

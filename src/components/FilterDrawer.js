@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View, Alert } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Accordion from 'react-native-collapsible/Accordion';
 import { Entypo, Ionicons } from '@expo/vector-icons';
@@ -14,6 +14,7 @@ import GenreFilters from './GenreFilters';
 const FilterDrawer = ({ handleFilter, numResults }) => {
     const [active, setActive] = useState([]);
     const [clear, setClear] = useState(false);
+    const [cleared, setCleared] = useState(false);
     const [format, setFormat] = useState([]);
     const [genre, setGenre] = useState([]);
     const [price, setPrice] = useState(100);
@@ -39,6 +40,9 @@ const FilterDrawer = ({ handleFilter, numResults }) => {
     const handleClear = async () => {
         setClear(!clear);
         setPrice(100);
+        setTimeout(() => {
+            setCleared(!cleared);
+        }, 500);
     };
 
     useEffect(() => {
@@ -46,7 +50,7 @@ const FilterDrawer = ({ handleFilter, numResults }) => {
 
     useEffect(() => {
         handleApply()
-    }, []);
+    }, [cleared]);
 
     const renderHeader = () => {
         return (
@@ -118,7 +122,7 @@ const FilterDrawer = ({ handleFilter, numResults }) => {
                         { label: 'Electro'},
                         { label: 'Deep House' },
                         { label: 'Disco' },
-                        { label: 'Rock' }
+                        { label: 'Downtempo' }
                     ]}
                     onPress={(g) => handleGenre(g)}
                     title={'Genre'}

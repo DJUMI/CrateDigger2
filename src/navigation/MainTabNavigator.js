@@ -78,7 +78,7 @@ export default function MainTabNavigator() {
         <SafeAreaProvider>
             <NavigationContainer>
                 <Tab.Navigator
-                    initialRouteName="Feedback"
+                    initialRouteName="Home"
                     tabBarOptions={{
                         activeTintColor: Colors.seaGreen,
                         activeIconColor: Colors.seaGreen,

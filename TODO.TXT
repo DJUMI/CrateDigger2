@@ -15,9 +15,7 @@ dig
     maybe lower height on card image? need to test with actually images
     filter button should be rendered before swiper
 cart
-    add are you sure modal for clearing cart
     update swipeable to use effects
-    add cart to async storage
     loading for clear
     loading for delete
 details
@@ -28,4 +26,3 @@ scaling
     dig card is a little wonky on ipad
 db
     !pull jiggy inventory
-    !delete items that aren't for sale

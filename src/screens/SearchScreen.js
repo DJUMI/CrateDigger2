@@ -23,7 +23,14 @@ const SearchScreen = () => {
         if(format.length != 0) {
             const updatedFormat = [];
             format.map((f) => {
-                updatedFormat.push({ format: { $regex: f, '$options': 'i' } });
+                if (f === 'Vinyl') {
+                    updatedFormat.push({ format: { $regex: '12"', '$options': 'i' } });
+                    updatedFormat.push({ format: { $regex: '10"', '$options': 'i' } });
+                    updatedFormat.push({ format: { $regex: '7"', '$options': 'i' } });
+                    updatedFormat.push({ format: { $regex: 'LP', '$options': 'i' } });
+                } else {
+                    updatedFormat.push({ format: { $regex: f, '$options': 'i' } });
+                }
             });
             formatQuery = { $or: updatedFormat };
         }

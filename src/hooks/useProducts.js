@@ -32,17 +32,18 @@ export default (type, genre) => {
             .find(
                 query,
                 {
+                    sort: { listing_id: -1 },
+                    limit: 100
+                },
+                {
                     projection:
                     {
                         listing_id: 1,
                         image_url: 1,
                         title: 1
                     }
-                },
-                {
-                    sort: { listing_id: -1 },
-                    limit: 25
-                })
+                }
+                )
             .asArray()
             .then(fetchedProducts => {
                 setProducts(fetchedProducts);
