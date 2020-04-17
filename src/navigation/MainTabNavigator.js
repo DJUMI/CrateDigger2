@@ -11,6 +11,7 @@ import CartScreen from '../screens/CartScreen';
 import DigScreen from '../screens/DigScreen';
 import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
+import FeedbackScreen from '../screens/FeedbackScreen';
 import TabBarIcon from '../components/TabBarIcon';
 
 const defaultOptions = {
@@ -77,7 +78,7 @@ export default function MainTabNavigator() {
         <SafeAreaProvider>
             <NavigationContainer>
                 <Tab.Navigator
-                    initialRouteName="Home"
+                    initialRouteName="Feedback"
                     tabBarOptions={{
                         activeTintColor: Colors.seaGreen,
                         activeIconColor: Colors.seaGreen,
@@ -124,6 +125,17 @@ export default function MainTabNavigator() {
                                 <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-star' : 'md-star'} />
                             ),
                         }}
+                    />
+                    <Tab.Screen 
+                        name="Feedback" 
+                        component={FeedbackScreen} 
+                        options={{
+                            headerShown: false,
+                            tabBarLabel: 'Feedback',
+                            tabBarIcon: ({ focused }) => (
+                                <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-chatboxes' : 'md-chatboxes'} />
+                            ),
+                        }} 
                     />
                 </Tab.Navigator>
             </NavigationContainer>
