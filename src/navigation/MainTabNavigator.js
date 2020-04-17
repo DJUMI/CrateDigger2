@@ -119,9 +119,9 @@ export default function MainTabNavigator() {
                         name="Cart"
                         component={CartStackScreen}
                         options={{
-                            tabBarLabel: 'Cart',
+                            tabBarLabel: 'Wishlist',
                             tabBarIcon: ({ focused }) => (
-                                <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-cart' : 'md-cart'} />
+                                <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-star' : 'md-star'} />
                             ),
                         }}
                     />

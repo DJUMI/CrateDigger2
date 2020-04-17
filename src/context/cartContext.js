@@ -15,6 +15,7 @@ const cartReducer = (state, action) => {
             Alert.alert('Added!');
             return { cart: updatedItems, cartTotal: updatedTotal }
         case 'clear_cart':
+            Alert.alert('Cleared!');
             return { cart: [], cartTotal: 0 };
         case 'remove_from_cart':
             const filteredItems = state.cart.filter(item => {
@@ -65,7 +66,7 @@ const addToCart = (dispatch) => async (user, item) => {
         )
         .then(matched => {
             if (matched.matchedCount != 0) {
-                Alert.alert('Item is already in your cart!');
+                Alert.alert('Item is already on your wishlist!');
             } else {
                 dispatch({ type: 'add_to_cart', payload: item });
             }

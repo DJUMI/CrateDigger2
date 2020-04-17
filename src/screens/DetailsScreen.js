@@ -14,8 +14,8 @@ const DetailsScreen = ({ route }) => {
     const [product, isLoading] = useProduct(prodId);
     const { addToCart } = useContext(CartContext);
     const user = useContext(UserContext);
-    
-    
+
+
     return (
         isLoading
             ? <View style={styles.loadingContainer}>
@@ -45,13 +45,28 @@ const DetailsScreen = ({ route }) => {
                 </View>
 
                 <View style={styles.buttonContainer}>
-                    <RoundButton 
-                        title='+ Add to Cart' 
-                        onPress={() => {addToCart(user, product)}} />
+                    <RoundButton
+                        title='+ Add to Wishlist'
+                        onPress={() => { addToCart(user, product) }} />
                     {product.video_url
                         ? <RoundButton title='Listen' onPress={() => { Linking.openURL(product.video_url) }} />
                         : <RoundButton disabled title='Listen' onPress={() => { }} />
                     }
+                </View>
+                <View style={styles.buttonContainer2}>
+                    {product.status === 'For Sale'
+                        ? <RoundButton
+                            title='Buy on Discogs'
+                            onPress={() => { Linking.openURL(`https://www.discogs.com/sell/cart/?add=${product.listing_id}&ev=atc_br`) }}
+                        />
+                        : <RoundButton
+                            title='Buy on Discogs'
+                            onPress={() => { Linking.openURL(`https://www.discogs.com/sell/cart/?add=${product.listing_id}&ev=atc_br`) }}
+                            disabled
+                        />
+
+                    }
+
                 </View>
 
                 <MoreList title='More from this Artist' type='artist' search={product.artist} id={product.release_id} />
@@ -99,6 +114,12 @@ const styles = EStyleSheet.create({
         paddingTop: '10rem',
         paddingHorizontal: '30rem',
         justifyContent: 'space-between'
+    },
+    buttonContainer2: {
+        paddingBottom: '15rem',
+        paddingTop: '10rem',
+        paddingHorizontal: '30rem',
+        alignItems: 'center'
     },
     loadingContainer: {
         flex: 1,

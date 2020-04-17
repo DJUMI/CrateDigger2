@@ -23,7 +23,7 @@ const CartListItem = ({ item }, navigation, removeFromCart) => {
             <View style={styles.container}>
                 <TouchableOpacity
                     style={styles.infoContainer}
-                    onPress={() => navigation.push('Details', { item })}
+                    onPress={() => navigation.push('Details', { prodId: item.listing_id })}
                 >
                     <View style={styles.imageContainer}>
                         {item.image_url

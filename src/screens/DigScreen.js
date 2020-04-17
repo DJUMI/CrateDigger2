@@ -10,10 +10,12 @@ import Genres from '../constants/Genres';
 import DigCard from '../components/lists/items/DigCard';
 import SquareButton from '../components/buttons/SquareButton';
 import { Context as CartContext } from '../context/cartContext';
+import UserContext from '../context/userContext';
 import useDigProducts from '../hooks/useDigProducts';
 
 const DigScreen = ({ navigation }) => {
     const { addToCart } = useContext(CartContext);
+    const user = useContext(UserContext);
     const [genre, setGenre] = useState('');
     const [refreshing, setRefreshing]  = useState(false);
     const [products, isLoading] = useDigProducts(genre);
@@ -50,7 +52,7 @@ const DigScreen = ({ navigation }) => {
                         backgroundColor={Colors.darkBlue}
                         cardHorizontalMargin={EStyleSheet.value('10rem')}
                         cards={products}
-                        renderCard={(card) => DigCard(card, navigation, addToCart)}
+                        renderCard={(card) => DigCard(card, navigation, addToCart, user)}
                         stackSize={2}
                         cardVerticalMargin={EStyleSheet.value('10rem')}
                     />

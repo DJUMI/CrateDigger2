@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Image, Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Colors from '../../../constants/Colors';
 import RoundButton from '../../buttons/RoundButton';
 
-const DigCard = (item, navigation, addToCart) => {
+const DigCard = (item, navigation, addToCart, user) => {
+
     return (
         <View style={styles.container}>
             <View style={styles.textContainer}>
@@ -38,7 +39,7 @@ const DigCard = (item, navigation, addToCart) => {
 
             <View style={styles.buttonContainer}>
                 <RoundButton title='See Details' onPress={() => navigation.push('Details', { prodId: item.listing_id })} />
-                <RoundButton title='+ Add to Cart' onPress={() => addToCart(item)} />
+                <RoundButton title='+ Add to Wishlist' onPress={() => addToCart(user, item)} />
             </View>
         </View>
     );

@@ -5,7 +5,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import Colors from '../../../constants/Colors';
 import { Context } from '../../../context/cartContext';
 import UserContext from '../../../context/userContext';
-import TwoSquareButtons from '../../buttons/TwoSquareButtons';
+import SquareButton from '../../buttons/SquareButton';
 
 const CartListFooter = () => {
     const user = useContext(UserContext);
@@ -15,15 +15,15 @@ const CartListFooter = () => {
         <View>
             <View style={styles.container}>
                 <Text style={styles.text}>Total:</Text>
-                <Text style={styles.text}>${parseFloat(Math.round(state.cartTotal * 100) / 100).toFixed(2)}</Text> 
+                <Text style={styles.text}>${parseFloat(Math.round(state.cartTotal * 100) / 100).toFixed(2)}</Text>
             </View>
 
-            <TwoSquareButtons 
-                onPress1={() => clearCart(user)} 
-                onPress2={() => {}} 
-                title1='Clear Cart'
-                title2='Check Out'
-            />
+            <View style={styles.buttonContainer}>
+                <SquareButton
+                    onPress={() => clearCart(user)}
+                    title='Clear Wishlist'
+                />
+            </View>
         </View>
     );
 };
@@ -42,5 +42,9 @@ const styles = EStyleSheet.create({
         fontSize: '15rem',
         color: Colors.nearWhite,
         paddingRight: '10rem'
+    },
+    buttonContainer: {
+        alignItems: 'center',
+        marginTop: '20rem'
     }
 });
