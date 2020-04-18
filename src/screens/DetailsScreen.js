@@ -53,21 +53,16 @@ const DetailsScreen = ({ route }) => {
                         : <RoundButton disabled title='Listen' onPress={() => { }} />
                     }
                 </View>
-                <View style={styles.buttonContainer2}>
-                    {product.status === 'For Sale'
-                        ? <RoundButton
+
+                {product.status === 'For Sale'
+                    ? <View style={styles.buttonContainer2}>
+                        <RoundButton
                             title='Buy on Discogs'
                             onPress={() => { Linking.openURL(`https://www.discogs.com/sell/cart/?add=${product.listing_id}&ev=atc_br`) }}
                         />
-                        : <RoundButton
-                            title='Buy on Discogs'
-                            onPress={() => { Linking.openURL(`https://www.discogs.com/sell/cart/?add=${product.listing_id}&ev=atc_br`) }}
-                            disabled
-                        />
-
-                    }
-
-                </View>
+                    </View>
+                    : null
+                }
 
                 <MoreList title='More from this Artist' type='artist' search={product.artist} id={product.release_id} />
                 <MoreList title='More from this Label' type='label' search={product.label} id={product.release_id} />

@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "Crate Digger",
+    "name": "CrateDigger",
     "slug": "CrateDigger",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/images/logo.png",
     "splash": {
@@ -24,7 +24,8 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.jiggyjamz.cratedigger"
+      "package": "com.jiggyjamz.cratedigger",
+      "versionCode": 3
     }
   }
 }
