@@ -41,6 +41,7 @@ export default () => {
         require('./assets/images/logo.png'),
       ]),
       Font.loadAsync({
+        ...Icon.Ionicons.font,
         "space-mono": require("./assets/fonts/SpaceMono-Regular.ttf"),
         Roboto: require('./assets/fonts/Roboto.ttf'),
         Roboto_medium: require("./assets/fonts/Roboto_medium.ttf"),
@@ -52,11 +53,11 @@ export default () => {
     _loadClient();
   }, []);
 
-  _handleLoadingError = error => {
+  const _handleLoadingError = error => {
     console.warn(error);
   };
 
-  _handleFinishLoading = () => {
+  const _handleFinishLoading = () => {
     setIsLoading(false);
   };
 
@@ -64,8 +65,8 @@ export default () => {
     return (
       <AppLoading
         startAsync={_loadResourcesAsync}
-        onError={this._handleLoadingError}
-        onFinish={this._handleFinishLoading}
+        onError={_handleLoadingError}
+        onFinish={_handleFinishLoading}
       />
     );
   } else {
