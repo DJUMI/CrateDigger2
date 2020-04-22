@@ -17,9 +17,9 @@ const DigScreen = ({ navigation }) => {
     const { addToCart } = useContext(CartContext);
     const user = useContext(UserContext);
     const [genre, setGenre] = useState('');
-    const [refreshing, setRefreshing]  = useState(false);
+    const [refreshing, setRefreshing] = useState(false);
     const [products, isLoading] = useDigProducts(genre);
- 
+
     const showActionSheet = () => {
         this.ActionSheet.show();
     };
@@ -41,48 +41,48 @@ const DigScreen = ({ navigation }) => {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
-            {renderHeader()}
-            <View style={styles.cardContainer}>
-                {isLoading || refreshing
-                    ? <View style={styles.loadingContainer}>
-                        <ActivityIndicator />
-                    </View>
-                    : <Swiper
-                        backgroundColor={Colors.darkBlue}
-                        cardHorizontalMargin={EStyleSheet.value('10rem')}
-                        cards={products}
-                        renderCard={(card) => DigCard(card, navigation, addToCart, user)}
-                        stackSize={2}
-                        cardVerticalMargin={EStyleSheet.value('10rem')}
+            <SafeAreaView style={styles.container}>
+                {renderHeader()}
+                <View style={styles.cardContainer}>
+                    {isLoading || refreshing
+                        ? <View style={styles.loadingContainer}>
+                            <ActivityIndicator />
+                        </View>
+                        : <Swiper
+                            backgroundColor={Colors.darkBlue}
+                            cardHorizontalMargin={EStyleSheet.value('10rem')}
+                            cards={products}
+                            renderCard={(card) => DigCard(card, navigation, addToCart, user)}
+                            stackSize={2}
+                            cardVerticalMargin={EStyleSheet.value('10rem')}
+                        />
+                    }
+                </View>
+                <View style={styles.filterContainer}>
+                    <SquareButton title='Genre' onPress={showActionSheet} />
+                    <ActionSheet
+                        ref={o => this.ActionSheet = o}
+                        options={Genres}
+                        cancelButtonIndex={10}
+                        destructiveButtonIndex={9}
+                        style={styles.actionSheet}
+                        onPress={async (index) => {
+                            if (index == 6) {
+                                setRefreshing(true);
+                                setGenre('hop');
+                            }
+                            else if (index == 9) {
+                                setRefreshing(true);
+                                setGenre('');
+                            }
+                            else if (index != 10) {
+                                setRefreshing(true);
+                                setGenre(Genres[index]);
+                            }
+                        }}
                     />
-                }
-            </View>
-            <View style={styles.filterContainer}>
-                <SquareButton title='Genre' onPress={showActionSheet} />
-                <ActionSheet
-                    ref={o => this.ActionSheet = o}
-                    options={Genres}
-                    cancelButtonIndex={10}
-                    destructiveButtonIndex={9}
-                    style={styles.actionSheet}
-                    onPress={async (index) => {
-                        if (index == 6) {
-                            setRefreshing(true);
-                            setGenre('hop');
-                        }
-                        else if (index == 9) {
-                            setRefreshing(true);
-                            setGenre('');
-                        }
-                        else if (index != 10) {
-                            setRefreshing(true);
-                            setGenre(Genres[index]);
-                        }
-                    }}
-                />
-            </View>
-        </SafeAreaView>
+                </View>
+            </SafeAreaView>
     );
 }
 
@@ -97,16 +97,18 @@ const styles = EStyleSheet.create({
         color: Colors.nearWhite,
         fontSize: '20rem',
         fontWeight: 'bold',
-        paddingTop: 30,
+        paddingTop: 25,
         alignSelf: 'center',
     },
     cardContainer: {
-        flex: 3
+        flex: 3,
+        zIndex: 1
     },
     filterContainer: {
         flex: 1,
-        alignSelf: 'center',
-        justifyContent: 'center'
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        paddingBottom: '15rem',
     },
     loadingContainer: {
         flex: 1,
